@@ -1,0 +1,14 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all HTML files:
+**/*.html
+tailwind.config.js
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+postcss.config.js
+package.json
+package-lock.json
+.eslintrc.cjs
