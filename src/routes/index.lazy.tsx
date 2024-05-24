@@ -1,13 +1,6 @@
+import { LandingPage } from '@/pages/LandingPage';
 import { createLazyFileRoute } from '@tanstack/react-router';
 
 export const Route = createLazyFileRoute('/')({
-  component: Index,
+  component: () => <LandingPage />,
 });
-
-function Index(): JSX.Element {
-  return (
-    <div className="p-2">
-      <h3>Welcome Home!</h3>
-    </div>
-  );
-}

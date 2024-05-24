@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['love', 'plugin:react/recommended', 'plugin:prettier/recommended'],
+  extends: [ 'love' ,'plugin:react/recommended', 'plugin:prettier/recommended'],
   overrides: [
     {
       env: {

@@ -13,19 +13,15 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ProductProductSlugImport } from './routes/product/$productSlug'
 
 // Create Virtual Routes
 
-const ProductsLazyImport = createFileRoute('/products')()
 const FaqLazyImport = createFileRoute('/faq')()
 const IndexLazyImport = createFileRoute('/')()
+const ProductIndexLazyImport = createFileRoute('/product/')()
 
 // Create/Update Routes
-
-const ProductsLazyRoute = ProductsLazyImport.update({
-  path: '/products',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/products.lazy').then((d) => d.Route))
 
 const FaqLazyRoute = FaqLazyImport.update({
   path: '/faq',
@@ -36,6 +32,16 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const ProductIndexLazyRoute = ProductIndexLazyImport.update({
+  path: '/product/',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/product/index.lazy').then((d) => d.Route))
+
+const ProductProductSlugRoute = ProductProductSlugImport.update({
+  path: '/product/$productSlug',
+  getParentRoute: () => rootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -55,11 +61,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqLazyImport
       parentRoute: typeof rootRoute
     }
-    '/products': {
-      id: '/products'
-      path: '/products'
-      fullPath: '/products'
-      preLoaderRoute: typeof ProductsLazyImport
+    '/product/$productSlug': {
+      id: '/product/$productSlug'
+      path: '/product/$productSlug'
+      fullPath: '/product/$productSlug'
+      preLoaderRoute: typeof ProductProductSlugImport
+      parentRoute: typeof rootRoute
+    }
+    '/product/': {
+      id: '/product/'
+      path: '/product'
+      fullPath: '/product'
+      preLoaderRoute: typeof ProductIndexLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -70,7 +83,8 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   FaqLazyRoute,
-  ProductsLazyRoute,
+  ProductProductSlugRoute,
+  ProductIndexLazyRoute,
 })
 
 /* prettier-ignore-end */
