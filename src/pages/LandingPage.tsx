@@ -10,19 +10,17 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { CardProduct } from '@/components/products/CardProduct';
+import { useQuery } from '@tanstack/react-query';
 
 const MAX_SCREEN_WIDTH = 768;
 
 export const LandingPage = () => {
-  const [products, setProducts] = useState<Product[]>();
   const [showControls, setShowControls] = useState(true);
 
-  useEffect(() => {
-    (async () => {
-      const data = await getAllProducts(10, 0);
-      setProducts(data);
-    })();
-  }, []);
+  const { data: products } = useQuery({
+    queryKey: ['product'],
+    queryFn: () => getAllProducts(10, 0),
+  });
 
   useEffect(() => {
     const handleResize = () => {

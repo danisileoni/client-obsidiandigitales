@@ -4,13 +4,8 @@ export interface Product {
   description: string;
   slug: string;
   tags: string[];
-  productImages: ProductImage[];
+  productImages: string[];
   products: ProductElement[];
-}
-
-export interface ProductImage {
-  id: number;
-  url: string;
 }
 
 export interface ProductElement {
@@ -29,10 +24,20 @@ export interface Platform {
 }
 
 export interface Sale {
-  id: number | null;
-  sale: number | null;
-  salePrimary: null | string;
-  saleSecondary: null | string;
-  salePrice: null | string;
-  finallySaleAt: null | string;
+  id: null;
+  sale: null;
+  salePrimary: null;
+  saleSecondary: null;
+  salePrice: null;
+  finallySaleAt: null;
+}
+
+export interface Stock {
+  stockPs4: StockPS;
+  stockPs5: StockPS;
+}
+
+export interface StockPS {
+  primary: number;
+  secondary: number;
 }

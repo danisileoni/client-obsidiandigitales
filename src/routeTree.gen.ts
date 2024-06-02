@@ -13,13 +13,13 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ProductIndexImport } from './routes/product/index'
 import { Route as ProductProductSlugImport } from './routes/product/$productSlug'
 
 // Create Virtual Routes
 
 const FaqLazyImport = createFileRoute('/faq')()
 const IndexLazyImport = createFileRoute('/')()
-const ProductIndexLazyImport = createFileRoute('/product/')()
 
 // Create/Update Routes
 
@@ -33,10 +33,10 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const ProductIndexLazyRoute = ProductIndexLazyImport.update({
+const ProductIndexRoute = ProductIndexImport.update({
   path: '/product/',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/product/index.lazy').then((d) => d.Route))
+} as any)
 
 const ProductProductSlugRoute = ProductProductSlugImport.update({
   path: '/product/$productSlug',
@@ -72,7 +72,7 @@ declare module '@tanstack/react-router' {
       id: '/product/'
       path: '/product'
       fullPath: '/product'
-      preLoaderRoute: typeof ProductIndexLazyImport
+      preLoaderRoute: typeof ProductIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -84,7 +84,7 @@ export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   FaqLazyRoute,
   ProductProductSlugRoute,
-  ProductIndexLazyRoute,
+  ProductIndexRoute,
 })
 
 /* prettier-ignore-end */

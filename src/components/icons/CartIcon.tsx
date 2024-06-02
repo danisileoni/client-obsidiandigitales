@@ -8,6 +8,7 @@ export const CartIcon = () => {
       stroke="currentColor"
       className="w-6 h-6"
     >
+      <title>Tarjeta</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

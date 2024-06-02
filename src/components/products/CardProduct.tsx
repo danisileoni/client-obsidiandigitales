@@ -1,6 +1,6 @@
 import { CartIcon } from '@/components/icons/CartIcon';
 import { PlatformValid } from '@/services/enum-services';
-import { Product, ProductElement } from '@/services/types-services';
+import type { Product, ProductElement } from '@/services/types-services';
 import { Link } from '@tanstack/react-router';
 import { ToolTipPs3, ToolTipPs4, ToolTipPs5, ToolTipSteam } from '../tooltip';
 
@@ -12,7 +12,7 @@ export const CardProduct = ({ product }: CardProductProps) => {
   const handleSearchMoreSmall = (
     products: ProductElement[],
   ): number | undefined => {
-    let priceLow;
+    let priceLow: number | undefined;
     const prices = products
       .map((product) => {
         if (product.price) {
@@ -39,17 +39,19 @@ export const CardProduct = ({ product }: CardProductProps) => {
 
   return (
     <Link to="/product/$productSlug" params={{ productSlug: product.slug }}>
-      <article className="flex flex-col items-center bg-[#ffffff] p-2 rounded-md hover:bg-[#f3f3f3] hover:shadow-xl shadow-gray-500 shadow-md hover:shadow-gray-500 transition-all duration-300">
-        <img
-          src={product.productImages[0].url}
-          alt={product.title}
-          className="rounded-sm w-52 h-64 object-cover max-md:w-40 max-md:h-48 max-xs:w-32 max-xs:h-40"
-        />
+      <article className="flex flex-col items-center bg-[#ffffff] p-2 rounded-md hover:bg-[#f3f3f3] hover:shadow-xl shadow-md hover:shadow-gray-400 transition-all duration-300">
+        <picture className="flex">
+          <img
+            src={product.productImages[0]}
+            alt={product.title}
+            className="rounded-sm w-52 h-64 object-cover max-md:w-40 max-md:h-48 max-xs:w-32 max-xs:h-40"
+          />
+        </picture>
         <div className="flex flex-col w-full">
           <h4 className="text-md max-xs:text-sm font-bold whitespace-nowrap overflow-hidden">
             {product.title}
           </h4>
-          <div className="flex flex-col w-full"></div>
+          {/* tags <div className="flex flex-col w-full"></div> */}
         </div>
         <div className="flex w-full gap-3 items-center">
           {product.products.map((product) => {
@@ -105,7 +107,10 @@ export const CardProduct = ({ product }: CardProductProps) => {
             ${handleSearchMoreSmall(product.products)} ARS
           </p>
         </div>
-        <button className="flex text-violet-700 border hover:bg-violet-700 hover:text-black transition-all duration-300 border-violet-700 w-full justify-center p-1 rounded-md gap-2">
+        <button
+          type="button"
+          className="flex text-violet-700 border hover:bg-violet-700 hover:text-black transition-all duration-300 border-violet-700 w-full justify-center p-1 rounded-md gap-2"
+        >
           Agregar <CartIcon />
         </button>
       </article>

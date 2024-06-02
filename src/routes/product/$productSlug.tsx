@@ -7,5 +7,6 @@ export const Route = createFileRoute('/product/$productSlug')({
 
 function ProductParam() {
   const { productSlug } = Route.useParams();
-  return <ProductPage param={productSlug} />;
+
+  return <ProductPage key={productSlug} param={productSlug} />;
 }

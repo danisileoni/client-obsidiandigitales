@@ -1,5 +1,5 @@
 import { config } from './axios-config';
-import { Product } from './types-services';
+import type { Product } from './types-services';
 
 export const getAllProducts = async (
   limit: number,
