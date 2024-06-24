@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ShoppingCartIndexImport } from './routes/shopping-cart/index'
 import { Route as ProductIndexImport } from './routes/product/index'
 import { Route as ProductProductSlugImport } from './routes/product/$productSlug'
 
@@ -20,6 +21,8 @@ import { Route as ProductProductSlugImport } from './routes/product/$productSlug
 
 const FaqLazyImport = createFileRoute('/faq')()
 const IndexLazyImport = createFileRoute('/')()
+const AuthRegisterLazyImport = createFileRoute('/auth/register')()
+const AuthLoginLazyImport = createFileRoute('/auth/login')()
 
 // Create/Update Routes
 
@@ -33,10 +36,25 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
+const ShoppingCartIndexRoute = ShoppingCartIndexImport.update({
+  path: '/shopping-cart/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const ProductIndexRoute = ProductIndexImport.update({
   path: '/product/',
   getParentRoute: () => rootRoute,
 } as any)
+
+const AuthRegisterLazyRoute = AuthRegisterLazyImport.update({
+  path: '/auth/register',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/auth/register.lazy').then((d) => d.Route))
+
+const AuthLoginLazyRoute = AuthLoginLazyImport.update({
+  path: '/auth/login',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/auth/login.lazy').then((d) => d.Route))
 
 const ProductProductSlugRoute = ProductProductSlugImport.update({
   path: '/product/$productSlug',
@@ -68,11 +86,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductProductSlugImport
       parentRoute: typeof rootRoute
     }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/auth/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/product/': {
       id: '/product/'
       path: '/product'
       fullPath: '/product'
       preLoaderRoute: typeof ProductIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/shopping-cart/': {
+      id: '/shopping-cart/'
+      path: '/shopping-cart'
+      fullPath: '/shopping-cart'
+      preLoaderRoute: typeof ShoppingCartIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -84,7 +123,10 @@ export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   FaqLazyRoute,
   ProductProductSlugRoute,
+  AuthLoginLazyRoute,
+  AuthRegisterLazyRoute,
   ProductIndexRoute,
+  ShoppingCartIndexRoute,
 })
 
 /* prettier-ignore-end */

@@ -1,5 +1,7 @@
 import logo from '../../assets/logo.webp';
 import { Link } from '@tanstack/react-router';
+import { ShoppingCart } from '../shopping-cart/ShoppingCart';
+import { SearchBar } from './SearchBar';
 
 export const Navbar = () => {
   return (
@@ -8,6 +10,7 @@ export const Navbar = () => {
         <Link to="/">
           <img className="w-24 md:w-40" src={logo} alt="Obsidian Digitales" />
         </Link>
+        <SearchBar />
         <ul className="flex gap-5 text-lg font-bold max-xs:hidden">
           <li>
             <Link
@@ -21,6 +24,7 @@ export const Navbar = () => {
             <Link
               className="text-[#5C3A9C] hover:text-[#a16eff] [&.active]:text-[#a16eff]"
               to="/product"
+              search={() => ({ page: '1' })}
             >
               Productos
             </Link>
@@ -34,6 +38,17 @@ export const Navbar = () => {
             </Link>
           </li>
         </ul>
+        <div className="flex items-center gap-3">
+          <Link to="/shopping-cart">
+            <ShoppingCart />
+          </Link>
+          <Link
+            to="/auth/login"
+            className="text-[#5C3A9C] font-bold hover:text-[#a16eff] [&.active]:text-[#a16eff]"
+          >
+            Login
+          </Link>
+        </div>
       </div>
     </nav>
   );

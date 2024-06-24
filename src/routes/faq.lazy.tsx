@@ -1,3 +1,4 @@
+import { FAQPage } from '@/pages/FAQPage';
 import { createLazyFileRoute } from '@tanstack/react-router';
 
 export const Route = createLazyFileRoute('/faq')({
@@ -5,5 +6,5 @@ export const Route = createLazyFileRoute('/faq')({
 });
 
 function Faq(): JSX.Element {
-  return <div className="p-2">Faq</div>;
+  return <FAQPage />;
 }

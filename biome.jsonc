@@ -11,10 +11,13 @@
     "rules": {
       "complexity": {
         "noStaticOnlyClass": "off",
+        "noUselessSwitchCase": "off",
       },
       "recommended": true,
       "style": {
         "useImportType": "off",
+        "noInferrableTypes": "off",
+        "useDefaultParameterLast": "off",
       },
     },
   },

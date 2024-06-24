@@ -51,7 +51,6 @@ export const CardProduct = ({ product }: CardProductProps) => {
           <h4 className="text-md max-xs:text-sm font-bold whitespace-nowrap overflow-hidden">
             {product.title}
           </h4>
-          {/* tags <div className="flex flex-col w-full"></div> */}
         </div>
         <div className="flex w-full gap-3 items-center">
           {product.products.map((product) => {
@@ -69,9 +68,9 @@ export const CardProduct = ({ product }: CardProductProps) => {
               return (
                 <ToolTipPs4
                   key={product.id}
-                  pricePrimary={product.pricePrimary}
+                  pricePrimary={product.priceSecondary}
                   priceSecondary={product.priceSecondary}
-                  salePrimary={product.sale.salePrimary}
+                  salePrimary={product.sale.saleSecondary}
                   saleSecondary={product.sale.saleSecondary}
                   sale={product.sale.sale}
                 />
@@ -82,9 +81,9 @@ export const CardProduct = ({ product }: CardProductProps) => {
                 <ToolTipPs5
                   key={product.id}
                   sale={product.sale.sale}
-                  pricePrimary={product.pricePrimary}
+                  pricePrimary={product.priceSecondary}
                   priceSecondary={product.priceSecondary}
-                  salePrimary={product.sale.salePrimary}
+                  salePrimary={product.sale.saleSecondary}
                   saleSecondary={product.sale.saleSecondary}
                 />
               );

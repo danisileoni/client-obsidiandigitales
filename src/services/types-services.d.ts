@@ -1,3 +1,11 @@
+export interface Products {
+  products: Product[];
+  countsProducts: number;
+  totalPages: number;
+  currentPage: number;
+  hasNextPage: boolean;
+}
+
 export interface Product {
   id: string;
   title: string;
@@ -8,10 +16,20 @@ export interface Product {
   products: ProductElement[];
 }
 
+export interface ProductCart {
+  id: string;
+  title: string;
+  description: string;
+  slug: string;
+  tags: string[];
+  images: { url: string; id: number }[];
+  product: ProductElement[];
+}
+
 export interface ProductElement {
   id: number;
-  pricePrimary: null | string;
   priceSecondary: null | string;
+  pricePrimary: null | string;
   price: null | string;
   createAt: Date;
   platform: Platform;
@@ -26,8 +44,8 @@ export interface Platform {
 export interface Sale {
   id: null;
   sale: null;
-  salePrimary: null;
   saleSecondary: null;
+  salePrimary: null;
   salePrice: null;
   finallySaleAt: null;
 }
@@ -40,4 +58,19 @@ export interface Stock {
 export interface StockPS {
   primary: number;
   secondary: number;
+}
+
+export interface RegisterInput {
+  name: string;
+  email: string;
+  username: string;
+  password: string;
+  confirmPassword: string;
+  customError?: string;
+}
+
+export interface LoginInput {
+  username: string;
+  password: string;
+  errorAuthorized?: string;
 }

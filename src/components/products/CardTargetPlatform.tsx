@@ -55,7 +55,7 @@ export const CardTargetPlatform = ({
   return (
     <>
       {product.products.map((product) => {
-        if (product.pricePrimary) {
+        if (product.priceSecondary) {
           return (
             <>
               <div className="shadow-md hover:shadow-violet-500 transition-shadow duration-500 cursor-pointer border pl-2 w-[250px] border-violet-500 rounded-sm flex">
@@ -75,14 +75,14 @@ export const CardTargetPlatform = ({
                   {product.platform.namePlatform} Primaria
                   <div>
                     <span
-                      className={`${product.sale.salePrimary ? 'line-through text-gray-500' : ''} font-bold`}
+                      className={`${product.sale.saleSecondary ? 'line-through text-gray-500' : ''} font-bold`}
                     >
-                      ${product.pricePrimary} ARS
+                      ${product.priceSecondary} ARS
                     </span>
-                    {product.sale.salePrimary ? (
+                    {product.sale.saleSecondary ? (
                       <>
                         <span className="pl-2 text-violet-700 font-bold">
-                          ${product.sale.salePrimary} ARS
+                          ${product.sale.saleSecondary} ARS
                         </span>
                         <p className="ml-1 border border-rose-500 bg-rose-500 rounded-md font-bold text-xs flex items-center absolute translate-x-48 -translate-y-[3.6rem] text-white h-5 w-9 justify-center">
                           -{product.sale.sale}%
@@ -100,7 +100,7 @@ export const CardTargetPlatform = ({
                             Disponible
                           </span>
                         ) : (
-                          <span className="text-green-600 font-bold">
+                          <span className="text-orange-500 font-bold">
                             Disponible en 24h
                           </span>
                         )
@@ -109,7 +109,7 @@ export const CardTargetPlatform = ({
                           Disponible
                         </span>
                       ) : (
-                        <span className="text-green-600 font-bold">
+                        <span className="text-orange-500 font-bold">
                           Disponible en 24h
                         </span>
                       )}
@@ -162,7 +162,7 @@ export const CardTargetPlatform = ({
                             Disponible
                           </span>
                         ) : (
-                          <span className="text-green-600 font-bold">
+                          <span className="text-orange-500 font-bold">
                             Disponible en 24h
                           </span>
                         )
@@ -171,7 +171,7 @@ export const CardTargetPlatform = ({
                           Disponible
                         </span>
                       ) : (
-                        <span className="text-green-600 font-bold">
+                        <span className="text-orange-500 font-bold">
                           Disponible en 24h
                         </span>
                       )}

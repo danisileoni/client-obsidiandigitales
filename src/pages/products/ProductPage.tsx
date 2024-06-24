@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import {
   Carousel,
   CarouselContent,
@@ -6,9 +7,9 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { getAllProducts, getOneProduct } from '@/services/products.services';
-import type { Product, ProductElement } from '@/services/types-services';
-import { useEffect, useRef, useState } from 'react';
+import type { ProductElement } from '@/services/types-services';
 import Autoplay from 'embla-carousel-autoplay';
+import { Toaster, toast } from 'sonner';
 import { CardTargetPlatform } from '@/components/products/CardTargetPlatform';
 import { ShareIcon } from '@/components/icons/ShareIcon';
 import { CartIcon } from '@/components/icons/CartIcon';
@@ -22,8 +23,11 @@ import { CardProduct } from '@/components/products/CardProduct';
 import { Link } from '@tanstack/react-router';
 import { HomeIcon } from '@/components/icons/HomeIcon';
 import { useQuery } from '@tanstack/react-query';
+import { useReSideWindows } from '@/hooks/re-side-window';
+import { useShoppingCart } from '@/store/shoppingCart';
+import { Navbar } from '@/components/common/Navbar';
 
-interface PriceProductId {
+interface AccountProductId {
   id: string;
   account: string | null;
 }
@@ -32,15 +36,13 @@ type ProductProps = {
   param: string;
 };
 
-const MAX_SCREEN_WIDTH = 768;
-
 export const ProductPage = ({ param }: ProductProps) => {
+  const { addCart, removeFromCart, updateCart, shoppingCart } =
+    useShoppingCart();
+
   const [copyElement, setCopyElement] = useState<boolean>(false);
-  const [priceProduct, setPriceProduct] = useState<{
-    id: string;
-    account: string | null;
-  }>();
-  const [showControls, setShowControls] = useState(true);
+  const [accountProduct, setAccountProduct] = useState<AccountProductId>();
+  const { showControls } = useReSideWindows();
   const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
   const { data: product } = useQuery({
@@ -55,20 +57,6 @@ export const ProductPage = ({ param }: ProductProps) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setShowControls(window.innerWidth > MAX_SCREEN_WIDTH);
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
   }, []);
 
   const handleSearchMoreSmall = (
@@ -99,11 +87,11 @@ export const ProductPage = ({ param }: ProductProps) => {
     return priceLow;
   };
 
-  const handleSetIdPriceChild = (data: PriceProductId) => {
-    setPriceProduct(data);
+  const handleSetIdPriceChild = (data: AccountProductId) => {
+    setAccountProduct(data);
   };
 
-  const handleSelectPriceProduct = (data: PriceProductId | undefined) => {
+  const handleSelectPriceProduct = (data: AccountProductId | undefined) => {
     let foundProduct: ProductElement | undefined;
     if (data) {
       foundProduct = product?.products.find(
@@ -112,10 +100,10 @@ export const ProductPage = ({ param }: ProductProps) => {
     }
 
     if (data?.account === 'Primary') {
-      if (foundProduct?.sale.salePrimary) {
-        return foundProduct.sale.salePrimary;
+      if (foundProduct?.sale.saleSecondary) {
+        return foundProduct.sale.saleSecondary;
       }
-      return foundProduct?.pricePrimary;
+      return foundProduct?.priceSecondary;
     }
 
     if (data?.account === 'Secondary') {
@@ -135,8 +123,48 @@ export const ProductPage = ({ param }: ProductProps) => {
     return 0;
   };
 
+  const handleSetCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (product && accountProduct) {
+      const foundProduct = product?.products.find(
+        (_product) => _product.id === +accountProduct.id,
+      );
+
+      if (foundProduct) {
+        const existingProduct = shoppingCart.find(
+          (item) => item.id === foundProduct.id,
+        );
+
+        if (existingProduct) {
+          if (existingProduct.account === 'Primary') {
+            updateCart({
+              id: foundProduct.id,
+              account: accountProduct.account,
+            });
+            toast.info('Se actualizado correctamente el producto');
+          } else if (existingProduct.account === 'Secondary') {
+            updateCart({
+              id: foundProduct.id,
+              account: accountProduct.account,
+            });
+            toast.info('Se actualizado correctamente el producto');
+          } else {
+            removeFromCart(existingProduct.id);
+            addCart({ id: foundProduct.id, account: accountProduct.account });
+            toast.success('Se a añadido correctamente el producto');
+          }
+        } else {
+          addCart({ id: foundProduct.id, account: accountProduct.account });
+          toast.success('Se a añadido correctamente el producto');
+        }
+      }
+    }
+  };
+
   return (
     <>
+      <Navbar />
       <article className="flex flex-col items-center justify-start max-lg:mt-5 md:flex-row md:justify-center md:items-start max-md:bg-white">
         <div>
           {showControls && (
@@ -150,6 +178,7 @@ export const ProductPage = ({ param }: ProductProps) => {
               </Link>
               <p className="text-gray-500">{'>'}</p>
               <Link
+                search={() => ({ page: '1' })}
                 className="text-gray-500 hover:text-violet-400 transition-colors duration-500"
                 to="/product"
               >
@@ -244,7 +273,7 @@ export const ProductPage = ({ param }: ProductProps) => {
                     </p>
                     <p className="ml-2 mt-4">Precio final:</p>
                     <p className="text-2xl font-bold ml-2 text-gray-800 w-full">
-                      ${handleSelectPriceProduct(priceProduct)} ARS
+                      ${handleSelectPriceProduct(accountProduct)} ARS
                     </p>
                     <div className="gap-2 mb-1 mt-4 flex flex-col items-center">
                       <button
@@ -256,6 +285,7 @@ export const ProductPage = ({ param }: ProductProps) => {
                       <button
                         type="button"
                         className="flex justify-center w-[92%] border border-violet-500 rounded-md text-violet-700 mb-2 mt-2 pr-2 pt-1 pb-1 pl-2 shadow-sm shadow-gray-400 hover:bg-violet-500 hover:text-black transition-all duration-300"
+                        onClick={handleSetCart}
                       >
                         Añadir al carrito <CartIcon />
                       </button>
@@ -318,7 +348,7 @@ export const ProductPage = ({ param }: ProductProps) => {
         >
           <CarouselContent className="-ml-5 md:-ml-2">
             {' '}
-            {products?.map((product) => {
+            {products?.products.map((product) => {
               return (
                 <CarouselItem
                   className="max-md:basis-52 md:basis-56 xl:basis-56 lg:basis-56 mb-6 max-xs:basis-40"
@@ -332,6 +362,7 @@ export const ProductPage = ({ param }: ProductProps) => {
           {showControls && <CarouselPrevious />}
           {showControls && <CarouselNext />}
         </Carousel>
+        <Toaster position="bottom-right" richColors />
       </div>
     </>
   );
