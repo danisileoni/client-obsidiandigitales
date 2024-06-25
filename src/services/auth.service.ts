@@ -37,3 +37,33 @@ export const loginGoogle = async () => {
 
   return data;
 };
+
+export const verifyTokens = async (
+  rt: string | undefined,
+  at: string | undefined,
+): Promise<boolean> => {
+  try {
+    const { status: rtStatus } = await config.get('/auth/verify-refresh', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${rt}`,
+      },
+    });
+
+    const { status: atStatus } = await config.get('/auth/verify-access', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${at}`,
+      },
+    });
+
+    if (rtStatus === 200 && atStatus === 200) {
+      return true;
+    }
+
+    return false;
+  } catch (error) {
+    console.error('Error verifying tokens');
+    return false;
+  }
+};
