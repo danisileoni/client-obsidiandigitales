@@ -69,8 +69,24 @@ export interface RegisterInput {
   customError?: string;
 }
 
+export interface UpdateInput {
+  name?: string;
+  email?: string;
+  username?: string;
+  currentPassword?: string;
+  password?: string;
+  confirmPassword?: string;
+}
+
 export interface LoginInput {
   username: string;
   password: string;
   errorAuthorized?: string;
+}
+
+export interface User {
+  id: string;
+  name: string;
+  username: string;
+  email: string;
 }

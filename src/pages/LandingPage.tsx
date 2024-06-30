@@ -36,8 +36,8 @@ export const LandingPage = () => {
             src={banner}
             alt="Banner"
           />
-          <h1 className="md:text-4xl lg:text-5xl  absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 text-white font-bold">
-            <span className="text-violet-600">Obsidian digitales</span>
+          <h1 className="text-4xl lg:text-5xl  absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 text-white font-bold">
+            <span className="text-sky-600">QuaraStore</span>
             , Tu <br />
             Tienda de Juegos de <br />
             Preferencia.
@@ -70,15 +70,15 @@ export const LandingPage = () => {
         </section>
         <section className="pt-5 pl-2 pr-2 md:pt-10 md:pl-20 md:pr-20 xl:pr-32 xl:pl-32">
           <div className="justify-between flex items-end">
-            <h2 className="text-2xl font-bold md:text-4xl pb-4">Ingresos</h2>
-            <p className="text-violet-700">Ver mas</p>
+            <h2 className="text-2xl font-bold md:text-4xl mb-4">Ingresos</h2>
+            <p className="text-sky-700">Ver mas</p>
           </div>
           <hr className="pb-5" />
           <Carousel
             opts={{
               align: 'start',
             }}
-            className="w-full"
+            className="w-full mb-20"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {' '}

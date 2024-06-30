@@ -16,6 +16,9 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as ShoppingCartIndexImport } from './routes/shopping-cart/index'
 import { Route as ProductIndexImport } from './routes/product/index'
 import { Route as ProductProductSlugImport } from './routes/product/$productSlug'
+import { Route as ShoppingCartPaymentIdOrderImport } from './routes/shopping-cart/payment/$idOrder'
+import { Route as AuthUserConfigUseridImport } from './routes/auth/user/config/$userid'
+import { Route as AuthUserBuysUseridImport } from './routes/auth/user/buys/$userid'
 
 // Create Virtual Routes
 
@@ -58,6 +61,23 @@ const AuthLoginLazyRoute = AuthLoginLazyImport.update({
 
 const ProductProductSlugRoute = ProductProductSlugImport.update({
   path: '/product/$productSlug',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ShoppingCartPaymentIdOrderRoute = ShoppingCartPaymentIdOrderImport.update(
+  {
+    path: '/shopping-cart/payment/$idOrder',
+    getParentRoute: () => rootRoute,
+  } as any,
+)
+
+const AuthUserConfigUseridRoute = AuthUserConfigUseridImport.update({
+  path: '/auth/user/config/$userid',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthUserBuysUseridRoute = AuthUserBuysUseridImport.update({
+  path: '/auth/user/buys/$userid',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -114,6 +134,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShoppingCartIndexImport
       parentRoute: typeof rootRoute
     }
+    '/shopping-cart/payment/$idOrder': {
+      id: '/shopping-cart/payment/$idOrder'
+      path: '/shopping-cart/payment/$idOrder'
+      fullPath: '/shopping-cart/payment/$idOrder'
+      preLoaderRoute: typeof ShoppingCartPaymentIdOrderImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/user/buys/$userid': {
+      id: '/auth/user/buys/$userid'
+      path: '/auth/user/buys/$userid'
+      fullPath: '/auth/user/buys/$userid'
+      preLoaderRoute: typeof AuthUserBuysUseridImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/user/config/$userid': {
+      id: '/auth/user/config/$userid'
+      path: '/auth/user/config/$userid'
+      fullPath: '/auth/user/config/$userid'
+      preLoaderRoute: typeof AuthUserConfigUseridImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -127,6 +168,9 @@ export const routeTree = rootRoute.addChildren({
   AuthRegisterLazyRoute,
   ProductIndexRoute,
   ShoppingCartIndexRoute,
+  ShoppingCartPaymentIdOrderRoute,
+  AuthUserBuysUseridRoute,
+  AuthUserConfigUseridRoute,
 })
 
 /* prettier-ignore-end */

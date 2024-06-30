@@ -1,6 +1,7 @@
 import { ProductCart } from '@/services/types-services';
 import { ProductCartStore, useShoppingCart } from '@/store/shoppingCart';
 import { TrashIcon } from '../icons/TrashIcon';
+import { ButtonCreateOrder } from './ButtonCreateOrder';
 
 interface ProductsCartProps {
   infoProducts: ProductCart[] | undefined;
@@ -100,7 +101,7 @@ export const ProductsCart = ({
                     return (
                       <li
                         key={product.id}
-                        className="border w-[260px] max-sm:w-[200px] border-violet-500 p-3 rounded-md relative bg-gray-50"
+                        className="border w-[260px] max-sm:w-[200px] border-sky-500 p-3 rounded-md relative bg-gray-50"
                       >
                         <p className="text-sm text-gray-600">
                           <span className="font-bold">Plataforma:</span>{' '}
@@ -115,7 +116,7 @@ export const ProductsCart = ({
                           onClick={(e) =>
                             handleRemoveProductCart(productCart?.id, e)
                           }
-                          className="text-white bg-red-500 rounded-sm absolute -top-2 -right-2 p-1 hover:bg-rose-600 transition-colors duration-300"
+                          className="text-black bg-red-500 rounded-sm absolute -top-2 -right-2 p-1 hover:bg-rose-600 transition-colors duration-300"
                         >
                           <TrashIcon />
                         </button>
@@ -123,7 +124,7 @@ export const ProductsCart = ({
                     );
                   })}
                 </ul>
-                <p className="text-violet-700 font-bold text-xl flex items-center">
+                <p className="text-sky-700 font-bold text-xl flex items-center">
                   <span className="text-black font-normal text-base">
                     Subtotal:
                   </span>{' '}
@@ -134,21 +135,16 @@ export const ProductsCart = ({
           );
         })}
       </section>
-      <section className="w-full flex flex-col items-center h-[8rem] mt-2 lg:w-1/4 border p-2 rounded-lg border-violet-500 bg-white shadow-lg">
+      <section className="w-full flex flex-col items-center h-[8rem] mt-2 lg:w-1/4 border p-2 rounded-lg border-sky-500 bg-white shadow-lg">
         <p className="self-start font-bold text-sm">Resumen</p>
-        <h2 className="text-2xl text-violet-600 flex gap-2 items-center font-bold">
+        <h2 className="text-2xl text-sky-600 flex gap-2 items-center font-bold">
           <span className="font-bold text-base text-black">Total:</span> $
           {totalPrice} ARS
         </h2>
         <p className="self-start text-xs">
           Total de productos: {shoppingCart.length}
         </p>
-        <button
-          type="button"
-          className="mt-2 w-full bg-violet-500 text-white py-1 rounded-md hover:bg-violet-600 transition-colors duration-300"
-        >
-          Continuar con la compra
-        </button>
+        <ButtonCreateOrder idOrders={shoppingCart} />
       </section>
     </div>
   );

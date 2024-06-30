@@ -23,8 +23,6 @@ export const getAllProducts = async (
     params.append('maxPrice', maxPrice);
   }
 
-  console.log(categories);
-
   if (categories && categories.length > 0) {
     for (const category of categories) {
       params.append('tags', category);

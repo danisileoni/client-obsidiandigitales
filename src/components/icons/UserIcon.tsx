@@ -5,7 +5,7 @@ export function UserIcon() {
       width="1.8em"
       height="1.8em"
       viewBox="0 0 256 256"
-      className="text-violet-500"
+      className="text-sky-500"
     >
       <title>User</title>
       <g fill="currentColor">

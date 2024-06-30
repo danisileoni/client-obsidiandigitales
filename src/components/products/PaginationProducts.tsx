@@ -16,7 +16,7 @@ const PaginationButton = ({
   onClick: () => void;
 }) => (
   <button
-    className={`${currentPage === page ? 'underline text-violet-500' : 'text-violet-700'} mr-1 ml-1 font-bold`}
+    className={`${currentPage === page ? 'underline text-sky-500' : 'text-sky-700'} mr-1 ml-1 font-bold`}
     disabled={currentPage === page}
     type="button"
     onClick={onClick}
@@ -55,7 +55,7 @@ export const PaginationProducts = ({ navigate, products }: PaginationProps) => {
         type="button"
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="text-violet-700 text-2xl mx-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="text-sky-700 text-2xl mx-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         ￩
       </button>
@@ -91,7 +91,7 @@ export const PaginationProducts = ({ navigate, products }: PaginationProps) => {
         type="button"
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={!products.hasNextPage}
-        className="text-violet-700 text-2xl mx-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="text-sky-700 text-2xl mx-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         ￫
       </button>

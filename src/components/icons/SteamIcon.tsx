@@ -10,7 +10,7 @@ export function SteamIcon({ MouseEnter, MouseLeave }: SteamProp) {
       width="1.5em"
       height="1.5em"
       viewBox="0 0 100 100"
-      className="text-violet-700"
+      className="text-sky-700"
       onMouseEnter={MouseEnter}
       onMouseLeave={MouseLeave}
     >

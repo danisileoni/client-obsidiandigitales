@@ -67,7 +67,7 @@ export const RegisterPage = () => {
                       message: 'El nombre no puede tener más de 21 caracteres',
                     },
                   })}
-                  className="p-2 rounded-md border-2 focus:border-violet-500 focus:outline-none bg-gray-100 w-96"
+                  className="p-2 rounded-md border-2 focus:border-sky-500 focus:outline-none bg-gray-100 w-96"
                   type="text"
                 />
                 <div className="min-h-[20px]">
@@ -95,7 +95,7 @@ export const RegisterPage = () => {
                     },
                   })}
                   onChange={() => clearErrors('customError')}
-                  className="p-2 rounded-md border-2 focus:border-violet-500 focus:outline-none bg-gray-100 w-96"
+                  className="p-2 rounded-md border-2 focus:border-sky-500 focus:outline-none bg-gray-100 w-96"
                   type="text"
                 />
                 <div className="min-h-[20px]">
@@ -115,7 +115,7 @@ export const RegisterPage = () => {
                     },
                   })}
                   onChange={() => clearErrors('customError')}
-                  className="p-2 rounded-md border-2 focus:border-violet-500 focus:outline-none bg-gray-100 w-96"
+                  className="p-2 rounded-md border-2 focus:border-sky-500 focus:outline-none bg-gray-100 w-96"
                   type="text"
                 />
                 <div className="min-h-[20px]">
@@ -145,7 +145,7 @@ export const RegisterPage = () => {
                         'La contraseña no puede tener más de 21 caracteres',
                     },
                   })}
-                  className="p-2 rounded-md border-2 focus:border-violet-500 focus:outline-none bg-gray-100 w-96"
+                  className="p-2 rounded-md border-2 focus:border-sky-500 focus:outline-none bg-gray-100 w-96"
                   type="password"
                 />
                 <div className="min-h-[20px]">
@@ -163,7 +163,7 @@ export const RegisterPage = () => {
                       value === getValues('password') ||
                       'Las contraseñas no coinciden',
                   })}
-                  className="p-2 rounded-md border-2 focus:border-violet-500 focus:outline-none bg-gray-100 w-96"
+                  className="p-2 rounded-md border-2 focus:border-sky-500 focus:outline-none bg-gray-100 w-96"
                   type="password"
                 />
                 <div className="min-h-[20px]">
@@ -184,13 +184,13 @@ export const RegisterPage = () => {
                 </div>
                 <button
                   type="submit"
-                  className="p-2 rounded-md hover:bg-violet-700 transition-colors duration-300 text-white text-lg font-bold bg-violet-500"
+                  className="p-2 rounded-md hover:bg-sky-700 transition-colors duration-300 text-white text-lg font-bold bg-sky-500"
                 >
                   Registrarse
                 </button>
                 <Link
                   to="/auth/login"
-                  className="text-violet-700 underline text-end"
+                  className="text-sky-700 underline text-end"
                 >
                   Ingresar
                 </Link>
@@ -198,7 +198,7 @@ export const RegisterPage = () => {
                   <p className="text-lg">Ingresar desde otra plataforma:</p>
                   <button
                     type="button"
-                    className="border w-10 rounded-sm shadow-lg border-violet-300 flex items-center justify-center p-1"
+                    className="border w-10 rounded-sm shadow-lg border-sky-300 flex items-center justify-center p-1"
                     onClick={async () => {
                       window.location.href =
                         'http://localhost:3000/api/v1/auth/google/login';

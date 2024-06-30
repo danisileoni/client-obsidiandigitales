@@ -57,7 +57,7 @@ export function ToolTipPs4({
                   </p>
                 </li>
               </div>
-              <div className="ml-4 text-violet-500">
+              <div className="ml-4 text-sky-500">
                 {salePrimary && (
                   <li className="flex items-center">
                     · ${salePrimary}{' '}

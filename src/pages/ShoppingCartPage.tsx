@@ -3,6 +3,7 @@ import { getSelectedProducts } from '@/services/products.services';
 import { useShoppingCart } from '@/store/shoppingCart';
 import { ProductsCart } from '@/components/shopping-cart/ProductsCart';
 import { Navbar } from '@/components/common/Navbar';
+import { Footer } from '@/components/common/Footer';
 
 export const ShoppingCartPage = () => {
   const { shoppingCart } = useShoppingCart();
@@ -15,7 +16,7 @@ export const ShoppingCartPage = () => {
   return (
     <>
       <Navbar />
-      <section className="flex items-center bg-violet-700">
+      <section className="flex items-center bg-sky-700">
         <div>
           <p>a</p>
         </div>
@@ -28,10 +29,11 @@ export const ShoppingCartPage = () => {
           <p>c</p>
         </div>
       </section>
-      <section className="flex flex-col items-center">
+      <section className="flex flex-col items-center mb-20">
         <h3>Mi Carrito</h3>
         <ProductsCart infoProducts={infoProducts} shoppingCart={shoppingCart} />
       </section>
+      <Footer />
     </>
   );
 };

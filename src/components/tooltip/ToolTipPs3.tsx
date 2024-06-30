@@ -36,7 +36,7 @@ export function ToolTipPs3({ price, salePrice, sale }: Ps3Prop) {
                   </p>
                 </li>
               </div>
-              <div className="ml-4 text-violet-500">
+              <div className="ml-4 text-sky-500">
                 {salePrice && (
                   <li className="flex items-center">
                     · ${salePrice}{' '}

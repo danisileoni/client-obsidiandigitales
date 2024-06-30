@@ -10,6 +10,14 @@ body {
   clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 0% 100%, 0% 0%, 0% 60%, 0% 40%);
 }
 
+@layer utilities {
+  .textShadow {
+    text-shadow:
+      0.5px 0.5px 0.5px black,
+      0 0 0.2em black;
+  }
+}
+
 input[type='search']::-webkit-search-cancel-button {
   -webkit-appearance: none;
   appearance: none;

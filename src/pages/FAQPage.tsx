@@ -1,3 +1,4 @@
+import { Footer } from '@/components/common/Footer';
 import { Navbar } from '@/components/common/Navbar';
 
 export const FAQPage = () => {
@@ -5,12 +6,12 @@ export const FAQPage = () => {
     <>
       <Navbar />
       <div className="flex flex-col w-full items-center bg-gray-100 min-h-screen py-10">
-        <h1 className="text-5xl text-center mt-8 font-bold text-violet-600 underline mb-10">
+        <h1 className="text-5xl text-center mt-8 font-bold text-sky-600 underline mb-10">
           Preguntas Frecuentes
         </h1>
         <section className="w-full max-w-4xl rounded-md shadow-lg p-8 bg-white">
           <article className="mb-8">
-            <h3 className="text-3xl font-bold text-violet-600 underline mb-4">
+            <h3 className="text-3xl font-bold text-sky-600 underline mb-4">
               Políticas de reembolso
             </h3>
             <div className="ml-4 text-lg leading-relaxed">
@@ -32,7 +33,7 @@ export const FAQPage = () => {
             </div>
           </article>
           <article className="mb-8">
-            <h3 className="text-3xl font-bold text-violet-600 underline mb-4">
+            <h3 className="text-3xl font-bold text-sky-600 underline mb-4">
               Problemas en el producto
             </h3>
             <div className="ml-4 text-lg leading-relaxed">
@@ -50,7 +51,7 @@ export const FAQPage = () => {
             </div>
           </article>
           <article className="mb-8">
-            <h3 className="text-3xl font-bold text-violet-600 underline mb-4">
+            <h3 className="text-3xl font-bold text-sky-600 underline mb-4">
               Pagos
             </h3>
             <div className="ml-4 text-lg leading-relaxed">
@@ -68,6 +69,7 @@ export const FAQPage = () => {
           </article>
         </section>
       </div>
+      <Footer />
     </>
   );
 };

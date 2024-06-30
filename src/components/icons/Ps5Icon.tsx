@@ -10,7 +10,7 @@ export function Ps5Icon({ MouseEnter, MouseLeave }: Ps5Prop) {
       width="1.5em"
       height="1.5em"
       viewBox="0 0 24 24"
-      className="text-violet-700"
+      className="text-sky-700"
       onMouseEnter={MouseEnter}
       onMouseLeave={MouseLeave}
     >

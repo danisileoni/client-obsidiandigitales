@@ -108,7 +108,7 @@ export const CardProduct = ({ product }: CardProductProps) => {
         </div>
         <button
           type="button"
-          className="flex text-violet-700 border hover:bg-violet-700 hover:text-black transition-all duration-300 border-violet-700 w-full justify-center p-1 rounded-md gap-2"
+          className="flex text-sky-700 border hover:bg-sky-700 text-black transition-all duration-300 border-sky-700 w-full justify-center p-1 rounded-md gap-2"
         >
           Agregar <CartIcon />
         </button>

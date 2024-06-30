@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { SearchIcon } from '../icons/SearchIcon';
 import { getSearchProduct } from '@/services/products.services';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useNavigate } from '@tanstack/react-router';
 
 export const SearchBar = () => {
@@ -50,10 +50,13 @@ export const SearchBar = () => {
     queryFn: () => getSearchProduct(search),
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    setIsSearchActive(true);
-  };
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+      setIsSearchActive(true);
+    },
+    [],
+  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -71,12 +74,12 @@ export const SearchBar = () => {
         onSubmit={handleSubmit}
         className="flex flex-col items-center justify-center gap-2"
       >
-        <div className="flex gap-2 bg-violet-700 rounded-full pr-3">
+        <div className="flex gap-2 bg-sky-700 rounded-full pr-3">
           <input
             type="search"
             placeholder="Buscar un prod..."
             autoComplete="off"
-            className="p-1 pl-4 rounded-l-full outline-none w-80 text-white bg-[#2f2f2f]"
+            className="p-1 pl-4 rounded-l-full outline-none w-[250px] md:w-80 text-white bg-[#2f2f2f]"
             name="search"
             onChange={handleInputChange}
           />

@@ -1,3 +1,4 @@
+import { Footer } from '@/components/common/Footer';
 import { Navbar } from '@/components/common/Navbar';
 import { HomeIcon } from '@/components/icons/HomeIcon';
 import { CardProduct } from '@/components/products/CardProduct';
@@ -104,20 +105,20 @@ export const ProductsPage = ({
           content="juegos baratos, comprar juegos, juegos en oferta, juegos de acción, juegos de supervivencia, juegos de disparos"
         />
       </head>
-      <section className="flex flex-col items-center mt-5">
+      <section className="flex flex-col items-center mt-5 mb-20">
         <div className="self-center flex flex-col">
           <div className="flex flex-col w-full">
             {showControls && (
               <div className="flex gap-1 flex-row mt-7 items-center">
                 <HomeIcon />
                 <Link
-                  className="text-gray-500 hover:text-violet-400 transition-colors duration-500"
+                  className="text-gray-500 hover:text-sky-400 transition-colors duration-500"
                   to="/"
                 >
                   Inicio
                 </Link>
                 <p className="text-gray-500">{'>'}</p>
-                <p className="text-violet-700">Productos</p>
+                <p className="text-sky-700">Productos</p>
               </div>
             )}
             <h1 className="text-3xl mb-4 font-bold max-sm:hidden">
@@ -128,7 +129,7 @@ export const ProductsPage = ({
             <div className="max-md:flex max-md:flex-col">
               <button
                 type="button"
-                className="md:hidden border border-violet-700 text-violet-700 p-1 rounded-md mb-4 self-end"
+                className="md:hidden border border-sky-700 text-sky-700 p-1 rounded-md mb-4 self-end"
                 onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}
               >
                 {isFilterMenuOpen ? 'Filtros ⌃' : 'Filtros ⌄'}
@@ -152,7 +153,7 @@ export const ProductsPage = ({
                       placeholder="Minimo"
                       defaultValue={minPrice}
                       onChange={(e) => setInputMinPrice(e.target.value)}
-                      className="w-[4.5rem] max-md:w-[35%] pl-1 rounded border border-violet-500 outline-violet-700"
+                      className="w-[4.5rem] max-md:w-[35%] pl-1 rounded border border-sky-500 outline-sky-700"
                     />
                     <p>-</p>
                     $
@@ -162,11 +163,11 @@ export const ProductsPage = ({
                       placeholder="Maximo"
                       defaultValue={maxPrice}
                       onChange={(e) => setInputMaxPrice(e.target.value)}
-                      className="w-[4.5rem] max-md:w-[35%] pl-1 rounded border border-violet-500 outline-violet-700"
+                      className="w-[4.5rem] max-md:w-[35%] pl-1 rounded border border-sky-500 outline-sky-700"
                     />
                     <button
                       type="submit"
-                      className="bg-violet-500 text-white rounded-md pr-1 pl-1 pb-0.5 pt-0.5"
+                      className="bg-sky-500 text-black rounded-md pr-1 pl-1 pb-0.5 pt-0.5"
                     >
                       Aplicar
                     </button>
@@ -182,7 +183,7 @@ export const ProductsPage = ({
                     className="mr-1"
                   />
                   <label
-                    className="text-violet-700 max-md:text-base"
+                    className="text-sky-700 max-md:text-base"
                     htmlFor="sale"
                   >
                     Ofertas
@@ -190,7 +191,7 @@ export const ProductsPage = ({
                 </div>
                 <div className="mt-2 text-sm">
                   <p className="font-bold text-base">Plataforma:</p>
-                  <div className="ml-2 flex flex-col max-md:text-base text-violet-700">
+                  <div className="ml-2 flex flex-col max-md:text-base text-sky-700">
                     <ul>
                       {platformArray.map(($platform) => {
                         return (
@@ -214,7 +215,7 @@ export const ProductsPage = ({
                 </div>
                 <div className="mt-2 text-sm">
                   <p className="font-bold text-base">Categoria:</p>
-                  <div className="ml-2 flex flex-col max-md:text-base text-violet-700">
+                  <div className="ml-2 flex flex-col max-md:text-base text-sky-700">
                     <ul>
                       {categorysArray.map((str) => (
                         <li key={str.category}>
@@ -240,7 +241,7 @@ export const ProductsPage = ({
                     <button
                       type="button"
                       onClick={handleDeleteQueryParams}
-                      className="w-full bg-violet-500 text-white pt-1 pb-1 rounded-md mt-2"
+                      className="w-full bg-sky-500 text-black pt-1 pb-1 rounded-md mt-2"
                     >
                       Eliminar filtros
                     </button>
@@ -258,14 +259,17 @@ export const ProductsPage = ({
                   );
                 })}
               </div>
-              <PaginationProducts
-                navigate={navigate}
-                products={products ?? null}
-              />
+              <div className="mt-5 self-center">
+                <PaginationProducts
+                  navigate={navigate}
+                  products={products ?? null}
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

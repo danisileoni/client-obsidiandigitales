@@ -26,6 +26,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useReSideWindows } from '@/hooks/re-side-window';
 import { useShoppingCart } from '@/store/shoppingCart';
 import { Navbar } from '@/components/common/Navbar';
+import { Footer } from '@/components/common/Footer';
 
 interface AccountProductId {
   id: string;
@@ -171,7 +172,7 @@ export const ProductPage = ({ param }: ProductProps) => {
             <div className=" flex gap-1 flex-row mt-7 items-center">
               <HomeIcon />
               <Link
-                className="text-gray-500 hover:text-violet-400 transition-colors duration-500"
+                className="text-gray-500 hover:text-sky-400 transition-colors duration-500"
                 to="/"
               >
                 Inicio
@@ -179,13 +180,13 @@ export const ProductPage = ({ param }: ProductProps) => {
               <p className="text-gray-500">{'>'}</p>
               <Link
                 search={() => ({ page: '1' })}
-                className="text-gray-500 hover:text-violet-400 transition-colors duration-500"
+                className="text-gray-500 hover:text-sky-400 transition-colors duration-500"
                 to="/product"
               >
                 Productos
               </Link>
               <p className="text-gray-500">{'>'}</p>
-              <p className="text-violet-700">{product?.title}</p>
+              <p className="text-sky-700">{product?.title}</p>
             </div>
           )}
           <div className="flex flex-col items-center bg-white p-4 md:p-8 rounded-t-md justify-start md:flex-row md:justify-center md:items-start">
@@ -218,7 +219,7 @@ export const ProductPage = ({ param }: ProductProps) => {
                 </h2>
                 <p className="text-2xl font-bold">
                   Desde{' '}
-                  <span className="text-2xl font-bold text-violet-700">
+                  <span className="text-2xl font-bold text-sky-700">
                     $
                     {product?.products
                       ? handleSearchMoreSmall(product.products)
@@ -257,18 +258,18 @@ export const ProductPage = ({ param }: ProductProps) => {
                     type="button"
                     onClick={() => {
                       navigator.clipboard.writeText(
-                        `https://www.obsidiandigitales.com/product/${product?.slug}`,
+                        `https://www.quarastore.com/product/${product?.slug}`,
                       );
                       setCopyElement(true);
                     }}
-                    className={` ${copyElement ? 'bg-violet-500 text-white' : ''} text-sm flex border border-violet-500 w-52 lg:w-full justify-center items-center shadow hover:shadow-violet-500 transition-shadow duration-500 gap-2`}
+                    className={` ${copyElement ? 'bg-sky-500 text-black' : ''} text-sm flex border border-sky-500 w-52 lg:w-full justify-center items-center shadow hover:shadow-sky-500 transition-shadow duration-500 gap-2`}
                   >
                     {copyElement ? 'Copiado' : 'Compartir'} <ShareIcon />
                   </button>
                 </div>
                 <div className="">
-                  <div className="mt-4 shadow-md shadow-gray-300 flex flex-col border rounded-sm border-violet-500">
-                    <p className="text-xs bg-violet-500 font-bold text-white text-center p-1">
+                  <div className="mt-4 shadow-md shadow-gray-300 flex flex-col border rounded-sm border-sky-500">
+                    <p className="text-xs bg-sky-500 font-bold text-black text-center p-1">
                       AÑADIR | COMPRAR
                     </p>
                     <p className="ml-2 mt-4">Precio final:</p>
@@ -278,21 +279,21 @@ export const ProductPage = ({ param }: ProductProps) => {
                     <div className="gap-2 mb-1 mt-4 flex flex-col items-center">
                       <button
                         type="button"
-                        className="w-[92%] shadow-sm shadow-gray-400 hover:bg-violet-600 bg-violet-500 rounded-md text-white pr-2 pt-1 pb-1 pl-2 transition-all duration-300"
+                        className="w-[92%] shadow-sm shadow-gray-400 hover:bg-sky-600 bg-sky-500 rounded-md text-black pr-2 pt-1 pb-1 pl-2 transition-all duration-300"
                       >
                         Comprar
                       </button>
                       <button
                         type="button"
-                        className="flex justify-center w-[92%] border border-violet-500 rounded-md text-violet-700 mb-2 mt-2 pr-2 pt-1 pb-1 pl-2 shadow-sm shadow-gray-400 hover:bg-violet-500 hover:text-black transition-all duration-300"
+                        className="flex justify-center w-[92%] border border-sky-500 rounded-md text-sky-700 mb-2 mt-2 pr-2 pt-1 pb-1 pl-2 shadow-sm shadow-gray-400 hover:bg-sky-500 text-black transition-all duration-300"
                         onClick={handleSetCart}
                       >
                         Añadir al carrito <CartIcon />
                       </button>
                     </div>
                   </div>
-                  <div className="shadow-md shadow-gray-300 mt-3 border rounded-sm border-violet-500">
-                    <p className="text-xs pl-1 font-bold bg-violet-500 text-white">
+                  <div className="shadow-md shadow-gray-300 mt-3 border rounded-sm border-sky-500">
+                    <p className="text-xs pl-1 font-bold bg-sky-500 text-black">
                       DISPONIBLE AL COMPRAR:
                     </p>
                     <div className="p-2 gap-2 flex">
@@ -306,7 +307,7 @@ export const ProductPage = ({ param }: ProductProps) => {
           </div>
           <div className="w-full pb-8 bg-white rounded-b-md max-md:flex max-lg:items-center max-lg:flex-col max-md:items-center flex flex-col">
             <div>
-              <div className="lg:pb-4 max-md:flex-col max-md:p-5 max-lg:p-3 lg:pl-6 lg:pr-6 lg:ml-8 justify-between lg:mr-8 bg-violet-500 rounded-xl flex shadow-md shadow-violet-900">
+              <div className="lg:pb-4 max-md:flex-col max-md:p-5 max-lg:p-3 lg:pl-6 lg:pr-6 lg:ml-8 justify-between lg:mr-8 bg-sky-500 rounded-xl flex shadow-md shadow-sky-900">
                 <div className="flex flex-col items-center">
                   <WarrantyIcon />
                   <p className="font-bold text-white">Garantia permanente.</p>
@@ -330,7 +331,7 @@ export const ProductPage = ({ param }: ProductProps) => {
               </div>
             </div>
             <div className="mt-5 ml-8 flex flex-col max-lg:ml-0 max-md:ml-0">
-              <p className="text-lg font-bold">Description:</p>
+              <p className="text-lg font-bold">Descripcion:</p>
               <div className="whitespace-pre-line bg-gray-100 max-md:max-w-64 max-lg:max-w-xl max-w-[1057px] p-2 rounded-md">
                 <p>{product?.description}</p>
               </div>
@@ -338,7 +339,7 @@ export const ProductPage = ({ param }: ProductProps) => {
           </div>
         </div>
       </article>
-      <div className=" mt-5 flex flex-col items-center max-lg:ml-0 max-md:ml-0">
+      <div className=" mt-5 flex flex-col mb-20 items-center max-lg:ml-0 max-md:ml-0">
         <p className="text-xl font-bold md:text-2xl mb-4">Otros Productos</p>
         <Carousel
           opts={{
@@ -364,6 +365,7 @@ export const ProductPage = ({ param }: ProductProps) => {
         </Carousel>
         <Toaster position="bottom-right" richColors />
       </div>
+      <Footer />
     </>
   );
 };

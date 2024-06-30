@@ -5,7 +5,7 @@ export function ShareIcon() {
       width="0.9em"
       height="0.9em"
       viewBox="0 0 24 24"
-      className="text-violet-700"
+      className="text-sky-700"
     >
       <title>Compartir</title>
       <path
