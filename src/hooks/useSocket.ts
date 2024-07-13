@@ -10,7 +10,7 @@ export const useSocket = (orderId: string) => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:3000', {
+    const newSocket = io(import.meta.env.VITE_HOST_WEBHOOK, {
       query: { orderId },
       transports: ['websocket'],
     });
