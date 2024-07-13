@@ -9,7 +9,7 @@ import { createPay } from '@/services/payment.service';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from '@tanstack/react-router';
 
-initMercadoPago('APP_USR-b2467b9d-854f-4af1-b7b4-210a206013f8', {
+initMercadoPago(import.meta.env.VITE_MP_SECRET, {
   locale: 'es-AR',
 });
 
