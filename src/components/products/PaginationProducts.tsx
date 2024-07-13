@@ -1,9 +1,9 @@
-import { Products } from '@/services/types-services';
+import { Payments, Products, Users } from '@/services/types-services';
 import { UseNavigateResult } from '@tanstack/react-router';
 
 type PaginationProps = {
   navigate: UseNavigateResult<'/product'>;
-  products: Products | null;
+  products: Products | Payments | Users | null;
 };
 
 const PaginationButton = ({

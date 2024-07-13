@@ -1,6 +1,11 @@
 import { AxiosError } from 'axios';
 import { config } from './axios-config';
-import { LoginInput, RegisterInput, UpdateInput } from './types-services';
+import {
+  LoginDashboard,
+  LoginInput,
+  RegisterInput,
+  UpdateInput,
+} from './types-services';
 
 export const registerAuth = async (registerBody: RegisterInput) => {
   const { data, status } = await config.post('/auth/register', registerBody, {
@@ -22,6 +27,23 @@ export const loginAuth = async (loginBody: LoginInput) => {
     },
     withCredentials: true,
   });
+
+  if (status !== 200) throw data;
+
+  return data;
+};
+
+export const loginAuthDashboard = async (loginBody: LoginDashboard) => {
+  const { data, status } = await config.post(
+    '/auth/login-dashboard',
+    loginBody,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
+    },
+  );
 
   if (status !== 200) throw data;
 
@@ -58,6 +80,47 @@ export const verifyTokens = async (
     if (error instanceof AxiosError) {
       const { status: refreshStatus } = await config.post(
         '/auth/refresh',
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${rt}`,
+          },
+          withCredentials: true,
+        },
+      );
+
+      if (refreshStatus === 200) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+};
+
+export const verifyTokensDashboard = async (
+  rt: string | undefined,
+  at: string | undefined,
+): Promise<boolean> => {
+  try {
+    const { status: atStatus } = await config.get(
+      '/auth/verify-access-dashboard',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${at}`,
+        },
+      },
+    );
+
+    if (atStatus === 200) {
+      return true;
+    }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const { status: refreshStatus } = await config.post(
+        '/auth/refresh-dashboard',
         {},
         {
           headers: {

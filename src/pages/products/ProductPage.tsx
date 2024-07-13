@@ -26,7 +26,6 @@ import { useQuery } from '@tanstack/react-query';
 import { useReSideWindows } from '@/hooks/re-side-window';
 import { useShoppingCart } from '@/store/shoppingCart';
 import { Navbar } from '@/components/common/Navbar';
-import { Footer } from '@/components/common/Footer';
 
 interface AccountProductId {
   id: string;
@@ -101,10 +100,10 @@ export const ProductPage = ({ param }: ProductProps) => {
     }
 
     if (data?.account === 'Primary') {
-      if (foundProduct?.sale.saleSecondary) {
-        return foundProduct.sale.saleSecondary;
+      if (foundProduct?.sale.salePrice) {
+        return foundProduct.sale.salePrimary;
       }
-      return foundProduct?.priceSecondary;
+      return foundProduct?.pricePrimary;
     }
 
     if (data?.account === 'Secondary') {
@@ -114,7 +113,7 @@ export const ProductPage = ({ param }: ProductProps) => {
       return foundProduct?.priceSecondary;
     }
 
-    if (data?.account === null && data.id) {
+    if (data?.account) {
       if (foundProduct?.sale.salePrice) {
         return foundProduct.sale.salePrice;
       }
@@ -129,10 +128,14 @@ export const ProductPage = ({ param }: ProductProps) => {
 
     if (product && accountProduct) {
       const foundProduct = product?.products.find(
-        (_product) => _product.id === +accountProduct.id,
+        ($product) => $product.id === +accountProduct.id,
       );
 
-      if (foundProduct) {
+      console.log(product);
+      console.log(accountProduct);
+      console.log(foundProduct);
+
+      if (foundProduct && accountProduct.account) {
         const existingProduct = shoppingCart.find(
           (item) => item.id === foundProduct.id,
         );
@@ -285,7 +288,7 @@ export const ProductPage = ({ param }: ProductProps) => {
                       </button>
                       <button
                         type="button"
-                        className="flex justify-center w-[92%] border border-sky-500 rounded-md text-sky-700 mb-2 mt-2 pr-2 pt-1 pb-1 pl-2 shadow-sm shadow-gray-400 hover:bg-sky-500 text-black transition-all duration-300"
+                        className="flex justify-center w-[92%] border border-sky-500 rounded-md mb-2 mt-2 pr-2 pt-1 pb-1 pl-2 shadow-sm shadow-gray-400 hover:bg-sky-500 text-sky-700 transition-all duration-300"
                         onClick={handleSetCart}
                       >
                         Añadir al carrito <CartIcon />
@@ -365,7 +368,6 @@ export const ProductPage = ({ param }: ProductProps) => {
         </Carousel>
         <Toaster position="bottom-right" richColors />
       </div>
-      <Footer />
     </>
   );
 };

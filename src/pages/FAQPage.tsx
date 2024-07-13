@@ -69,7 +69,6 @@ export const FAQPage = () => {
           </article>
         </section>
       </div>
-      <Footer />
     </>
   );
 };

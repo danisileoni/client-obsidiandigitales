@@ -13,12 +13,24 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as PrivacyPolicyImport } from './routes/privacy-policy'
+import { Route as LegalPolicyImport } from './routes/legal-policy'
+import { Route as GeneralConditionsImport } from './routes/general-conditions'
+import { Route as AboutImport } from './routes/about'
 import { Route as ShoppingCartIndexImport } from './routes/shopping-cart/index'
 import { Route as ProductIndexImport } from './routes/product/index'
 import { Route as ProductProductSlugImport } from './routes/product/$productSlug'
 import { Route as ShoppingCartPaymentIdOrderImport } from './routes/shopping-cart/payment/$idOrder'
+import { Route as AdminDashboardLoginImport } from './routes/admin/dashboard/login'
+import { Route as ShoppingCartPaymentProcessPaymentIdOrderImport } from './routes/shopping-cart/payment/process-payment/$idOrder'
 import { Route as AuthUserConfigUseridImport } from './routes/auth/user/config/$userid'
 import { Route as AuthUserBuysUseridImport } from './routes/auth/user/buys/$userid'
+import { Route as AdminDashboardPanelUsersImport } from './routes/admin/dashboard/panel/users'
+import { Route as AdminDashboardPanelProductsImport } from './routes/admin/dashboard/panel/products'
+import { Route as AdminDashboardPanelPaymentsImport } from './routes/admin/dashboard/panel/payments'
+import { Route as AdminDashboardPanelHomeImport } from './routes/admin/dashboard/panel/home'
+import { Route as AdminDashboardPanelDiscountsImport } from './routes/admin/dashboard/panel/discounts'
+import { Route as AdminDashboardPanelAccountsImport } from './routes/admin/dashboard/panel/accounts'
 
 // Create Virtual Routes
 
@@ -33,6 +45,26 @@ const FaqLazyRoute = FaqLazyImport.update({
   path: '/faq',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/faq.lazy').then((d) => d.Route))
+
+const PrivacyPolicyRoute = PrivacyPolicyImport.update({
+  path: '/privacy-policy',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LegalPolicyRoute = LegalPolicyImport.update({
+  path: '/legal-policy',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GeneralConditionsRoute = GeneralConditionsImport.update({
+  path: '/general-conditions',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AboutRoute = AboutImport.update({
+  path: '/about',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -71,6 +103,17 @@ const ShoppingCartPaymentIdOrderRoute = ShoppingCartPaymentIdOrderImport.update(
   } as any,
 )
 
+const AdminDashboardLoginRoute = AdminDashboardLoginImport.update({
+  path: '/admin/dashboard/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ShoppingCartPaymentProcessPaymentIdOrderRoute =
+  ShoppingCartPaymentProcessPaymentIdOrderImport.update({
+    path: '/shopping-cart/payment/process-payment/$idOrder',
+    getParentRoute: () => rootRoute,
+  } as any)
+
 const AuthUserConfigUseridRoute = AuthUserConfigUseridImport.update({
   path: '/auth/user/config/$userid',
   getParentRoute: () => rootRoute,
@@ -81,6 +124,40 @@ const AuthUserBuysUseridRoute = AuthUserBuysUseridImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AdminDashboardPanelUsersRoute = AdminDashboardPanelUsersImport.update({
+  path: '/admin/dashboard/panel/users',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminDashboardPanelProductsRoute =
+  AdminDashboardPanelProductsImport.update({
+    path: '/admin/dashboard/panel/products',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const AdminDashboardPanelPaymentsRoute =
+  AdminDashboardPanelPaymentsImport.update({
+    path: '/admin/dashboard/panel/payments',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const AdminDashboardPanelHomeRoute = AdminDashboardPanelHomeImport.update({
+  path: '/admin/dashboard/panel/home',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminDashboardPanelDiscountsRoute =
+  AdminDashboardPanelDiscountsImport.update({
+    path: '/admin/dashboard/panel/discounts',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const AdminDashboardPanelAccountsRoute =
+  AdminDashboardPanelAccountsImport.update({
+    path: '/admin/dashboard/panel/accounts',
+    getParentRoute: () => rootRoute,
+  } as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -90,6 +167,34 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutImport
+      parentRoute: typeof rootRoute
+    }
+    '/general-conditions': {
+      id: '/general-conditions'
+      path: '/general-conditions'
+      fullPath: '/general-conditions'
+      preLoaderRoute: typeof GeneralConditionsImport
+      parentRoute: typeof rootRoute
+    }
+    '/legal-policy': {
+      id: '/legal-policy'
+      path: '/legal-policy'
+      fullPath: '/legal-policy'
+      preLoaderRoute: typeof LegalPolicyImport
+      parentRoute: typeof rootRoute
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyImport
       parentRoute: typeof rootRoute
     }
     '/faq': {
@@ -134,11 +239,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShoppingCartIndexImport
       parentRoute: typeof rootRoute
     }
+    '/admin/dashboard/login': {
+      id: '/admin/dashboard/login'
+      path: '/admin/dashboard/login'
+      fullPath: '/admin/dashboard/login'
+      preLoaderRoute: typeof AdminDashboardLoginImport
+      parentRoute: typeof rootRoute
+    }
     '/shopping-cart/payment/$idOrder': {
       id: '/shopping-cart/payment/$idOrder'
       path: '/shopping-cart/payment/$idOrder'
       fullPath: '/shopping-cart/payment/$idOrder'
       preLoaderRoute: typeof ShoppingCartPaymentIdOrderImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/dashboard/panel/accounts': {
+      id: '/admin/dashboard/panel/accounts'
+      path: '/admin/dashboard/panel/accounts'
+      fullPath: '/admin/dashboard/panel/accounts'
+      preLoaderRoute: typeof AdminDashboardPanelAccountsImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/dashboard/panel/discounts': {
+      id: '/admin/dashboard/panel/discounts'
+      path: '/admin/dashboard/panel/discounts'
+      fullPath: '/admin/dashboard/panel/discounts'
+      preLoaderRoute: typeof AdminDashboardPanelDiscountsImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/dashboard/panel/home': {
+      id: '/admin/dashboard/panel/home'
+      path: '/admin/dashboard/panel/home'
+      fullPath: '/admin/dashboard/panel/home'
+      preLoaderRoute: typeof AdminDashboardPanelHomeImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/dashboard/panel/payments': {
+      id: '/admin/dashboard/panel/payments'
+      path: '/admin/dashboard/panel/payments'
+      fullPath: '/admin/dashboard/panel/payments'
+      preLoaderRoute: typeof AdminDashboardPanelPaymentsImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/dashboard/panel/products': {
+      id: '/admin/dashboard/panel/products'
+      path: '/admin/dashboard/panel/products'
+      fullPath: '/admin/dashboard/panel/products'
+      preLoaderRoute: typeof AdminDashboardPanelProductsImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/dashboard/panel/users': {
+      id: '/admin/dashboard/panel/users'
+      path: '/admin/dashboard/panel/users'
+      fullPath: '/admin/dashboard/panel/users'
+      preLoaderRoute: typeof AdminDashboardPanelUsersImport
       parentRoute: typeof rootRoute
     }
     '/auth/user/buys/$userid': {
@@ -155,6 +309,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthUserConfigUseridImport
       parentRoute: typeof rootRoute
     }
+    '/shopping-cart/payment/process-payment/$idOrder': {
+      id: '/shopping-cart/payment/process-payment/$idOrder'
+      path: '/shopping-cart/payment/process-payment/$idOrder'
+      fullPath: '/shopping-cart/payment/process-payment/$idOrder'
+      preLoaderRoute: typeof ShoppingCartPaymentProcessPaymentIdOrderImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -162,15 +323,27 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
+  AboutRoute,
+  GeneralConditionsRoute,
+  LegalPolicyRoute,
+  PrivacyPolicyRoute,
   FaqLazyRoute,
   ProductProductSlugRoute,
   AuthLoginLazyRoute,
   AuthRegisterLazyRoute,
   ProductIndexRoute,
   ShoppingCartIndexRoute,
+  AdminDashboardLoginRoute,
   ShoppingCartPaymentIdOrderRoute,
+  AdminDashboardPanelAccountsRoute,
+  AdminDashboardPanelDiscountsRoute,
+  AdminDashboardPanelHomeRoute,
+  AdminDashboardPanelPaymentsRoute,
+  AdminDashboardPanelProductsRoute,
+  AdminDashboardPanelUsersRoute,
   AuthUserBuysUseridRoute,
   AuthUserConfigUseridRoute,
+  ShoppingCartPaymentProcessPaymentIdOrderRoute,
 })
 
 /* prettier-ignore-end */

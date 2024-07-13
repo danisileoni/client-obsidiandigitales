@@ -1,3 +1,4 @@
+import { BuysUserPage } from '@/pages/auth/user/BuysUserPage';
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/auth/user/buys/$userid')({
@@ -10,5 +11,11 @@ export const Route = createFileRoute('/auth/user/buys/$userid')({
       });
     }
   },
-  component: () => <div>Hello /auth/user/shopping/$userid!</div>,
+  component: () => <BuyRouter />,
 });
+
+const BuyRouter = () => {
+  const { userid } = Route.useParams();
+
+  return <BuysUserPage userId={userid} />;
+};

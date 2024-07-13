@@ -11,5 +11,11 @@ export const Route = createFileRoute('/shopping-cart/payment/$idOrder')({
       });
     }
   },
-  component: () => PaymentPage,
+  component: () => <PaymentParams />,
 });
+
+const PaymentParams = () => {
+  const { idOrder } = Route.useParams();
+
+  return <PaymentPage id={idOrder} />;
+};

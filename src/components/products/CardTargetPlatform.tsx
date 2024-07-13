@@ -3,7 +3,7 @@ import { AccountSecondary } from '@/components/icons/AccountSecondary';
 import { AccountPrimary } from '@/components/icons/AccountPrimary';
 import { ToolTipAccount } from '@/components/tooltip/ToolTipAccount';
 import type { Product, Stock } from '@/services/types-services';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getStockProduct } from '@/services/account.service';
 
 interface InputRadio {
@@ -37,7 +37,6 @@ export const CardTargetPlatform = ({
       number,
       text,
     });
-    console.log(product);
 
     if (sendIdProduct) {
       if (text === 'Primary') {
@@ -64,12 +63,12 @@ export const CardTargetPlatform = ({
       {product.products.map((product) => {
         if (product.priceSecondary) {
           return (
-            <>
+            <React.Fragment key={product.id}>
               <div className="shadow-md hover:shadow-sky-500 transition-shadow duration-500 cursor-pointer border pl-2 w-[250px] border-sky-500 rounded-sm flex">
                 <input
                   type="radio"
                   id={`${product.platform.id}|Primary`}
-                  className="accent-sky-500 cursor-pointer m-[1px]"
+                  className="cursor-pointer m-[1px]"
                   name="platform"
                   onChange={handleChangePrice}
                   value={`${product.id}|Primary`}
@@ -82,14 +81,14 @@ export const CardTargetPlatform = ({
                   {product.platform.namePlatform} Primaria
                   <div>
                     <span
-                      className={`${product.sale.saleSecondary ? 'line-through text-gray-500' : ''} font-bold`}
+                      className={`${product.sale.salePrimary ? 'line-through text-gray-500' : ''} font-bold`}
                     >
-                      ${product.priceSecondary} ARS
+                      ${product.pricePrimary} ARS
                     </span>
-                    {product.sale.saleSecondary ? (
+                    {product.sale.salePrimary ? (
                       <>
                         <span className="pl-2 text-sky-700 font-bold">
-                          ${product.sale.saleSecondary} ARS
+                          ${product.sale.salePrimary} ARS
                         </span>
                         <p className="ml-1 border border-rose-500 bg-rose-500 rounded-md font-bold text-xs flex items-center absolute translate-x-48 -translate-y-[3.6rem] text-black h-5 w-9 justify-center">
                           -{product.sale.sale}%
@@ -133,7 +132,7 @@ export const CardTargetPlatform = ({
                   id={`${product.platform.id}|Secondary`}
                   name="platform"
                   onChange={handleChangePrice}
-                  className="accent-sky-500 cursor-pointer m-[1px]"
+                  className="cursor-pointer m-[1px]"
                   value={`${product.id}|Secondary`}
                 />
 
@@ -189,7 +188,7 @@ export const CardTargetPlatform = ({
                   </div>
                 </label>
               </div>
-            </>
+            </React.Fragment>
           );
         }
 
@@ -203,8 +202,8 @@ export const CardTargetPlatform = ({
               id={`${product.platform.id}|${product.platform.namePlatform}`}
               name="platform"
               onChange={handleChangePrice}
-              className="accent-sky-500 cursor-pointer m-[1px]"
-              value={`${product.platform.id}|${product.platform.namePlatform}`}
+              className=" cursor-pointer m-[1px]"
+              value={`${product.id}|${product.platform.namePlatform}`}
             />
 
             <label

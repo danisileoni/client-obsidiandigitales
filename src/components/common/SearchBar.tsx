@@ -10,7 +10,7 @@ export const SearchBar = () => {
   const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const searchContainerRef = useRef<HTMLDivElement | null>(null);
-  const navigate = useNavigate({ from: '/product' });
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (timeoutRef.current) {
@@ -45,9 +45,10 @@ export const SearchBar = () => {
     };
   }, []);
 
-  const { data: searchProduct } = useQuery({
+  const { data: searchProduct, isLoading } = useQuery({
     queryKey: ['searchProduct', search],
     queryFn: () => getSearchProduct(search),
+    enabled: inputValue !== '',
   });
 
   const handleInputChange = useCallback(
@@ -79,8 +80,9 @@ export const SearchBar = () => {
             type="search"
             placeholder="Buscar un prod..."
             autoComplete="off"
-            className="p-1 pl-4 rounded-l-full outline-none w-[250px] md:w-80 text-white bg-[#2f2f2f]"
+            className="p-1 pl-4 rounded-l-full outline-none w-[250px] md:w-80 text-white bg-[#3d3d3d]"
             name="search"
+            value={inputValue}
             onChange={handleInputChange}
           />
           <button type="submit" className="text-white">
@@ -88,26 +90,53 @@ export const SearchBar = () => {
           </button>
         </div>
       </form>
-      {isSearchActive && searchProduct && searchProduct.length > 0 && (
+      {isSearchActive && isLoading && inputValue !== '' && (
         <div className="absolute left-0 w-full bg-white shadow-lg rounded-lg mt-2 z-10">
-          {searchProduct.map((product) => (
-            <Link
-              key={product.id}
-              to={`/product/${product.slug}`}
-              className="flex items-center p-2 hover:bg-gray-200 rounded-lg"
-            >
-              <picture>
-                <img
-                  src={product.productImages[0]}
-                  className="w-10 h-12 object-cover rounded"
-                  alt={product.title}
-                />
-              </picture>
-              <span className="ml-2">{product.title}</span>
-            </Link>
-          ))}
+          <div className="animate-pulse flex items-center p-2 hover:bg-gray-200 rounded-lg">
+            <div className="bg-gray-300 h-12 w-10 rounded" />
+            <div className="ml-2 h-12 bg-gray-300 rounded w-3/4" />
+          </div>
+          <div className="animate-pulse flex items-center p-2 hover:bg-gray-200 rounded-lg">
+            <div className="bg-gray-300 h-12 w-10 rounded" />
+            <div className="ml-2 h-12 bg-gray-300 rounded w-3/4" />
+          </div>
+          <div className="animate-pulse flex items-center p-2 hover:bg-gray-200 rounded-lg">
+            <div className="bg-gray-300 h-12 w-10 rounded" />
+            <div className="ml-2 h-12 bg-gray-300 rounded w-3/4" />
+          </div>
+          <div className="animate-pulse flex items-center p-2 hover:bg-gray-200 rounded-lg">
+            <div className="bg-gray-300 h-12 w-10 rounded" />
+            <div className="ml-2 h-12 bg-gray-300 rounded w-3/4" />
+          </div>
+          <div className="animate-pulse flex items-center p-2 hover:bg-gray-200 rounded-lg">
+            <div className="bg-gray-300 h-12 w-10 rounded" />
+            <div className="ml-2 h-12 bg-gray-300 rounded w-3/4" />
+          </div>
         </div>
       )}
+      {isSearchActive &&
+        !isLoading &&
+        searchProduct &&
+        searchProduct.length > 0 && (
+          <div className="absolute left-0 w-full bg-white shadow-lg rounded-lg mt-2 z-10">
+            {searchProduct.map((product) => (
+              <Link
+                key={product.id}
+                to={`/product/${product.slug}`}
+                className="flex items-center p-2 hover:bg-gray-200 rounded-lg"
+              >
+                <picture>
+                  <img
+                    src={product.productImages[0]}
+                    className="w-10 h-12 object-cover rounded"
+                    alt={product.title}
+                  />
+                </picture>
+                <span className="ml-2">{product.title}</span>
+              </Link>
+            ))}
+          </div>
+        )}
     </div>
   );
 };

@@ -33,13 +33,13 @@ export const ProductsCart = ({
 
   return (
     <div className="flex flex-col lg:flex-row gap-5">
-      <section className="flex-1">
+      <section className="flex-1 flex flex-col gap-y-5">
         {infoProducts.map((info) => {
           let subTotal = 0;
           return (
             <article
               key={info.id}
-              className="flex max-md:flex-col max-md:items-center m-2 shadow-lg bg-white p-6 pr-12 rounded-lg border border-gray-200"
+              className="flex max-md:flex-col max-md:items-center shadow-lg bg-white p-6 pr-12 rounded-lg border border-gray-200"
             >
               <picture className="flex-shrink-0">
                 <img
@@ -52,7 +52,7 @@ export const ProductsCart = ({
                 <h5 className="text-lg font-bold text-gray-700">
                   {info.title}
                 </h5>
-                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 mt-2">
+                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-4 mt-2">
                   {info.product.map((product) => {
                     const productCart = shoppingCart.find(
                       (cart) => cart.id === product.id,
@@ -83,7 +83,7 @@ export const ProductsCart = ({
                           return product.priceSecondary;
                         }
                       }
-                      if (!productCart?.account) {
+                      if (productCart?.account) {
                         if (product.sale?.salePrice) {
                           subTotal += +product.sale.salePrice;
                           totalPrice += +product.sale.salePrice;
@@ -101,11 +101,15 @@ export const ProductsCart = ({
                     return (
                       <li
                         key={product.id}
-                        className="border w-[260px] max-sm:w-[200px] border-sky-500 p-3 rounded-md relative bg-gray-50"
+                        className="border w-[280px] max-sm:w-[200px] border-sky-500 p-3 rounded-md relative bg-gray-50"
                       >
                         <p className="text-sm text-gray-600">
                           <span className="font-bold">Plataforma:</span>{' '}
-                          {product.platform.namePlatform} {productCart?.account}
+                          {product.platform.namePlatform}{' '}
+                          {productCart?.account !== 'Steam' &&
+                          productCart?.account !== 'PlayStation 3'
+                            ? productCart?.account
+                            : ''}
                         </p>
                         <p className="text-sm text-gray-600">
                           <span className="font-bold">Precio:</span> ${price}{' '}
@@ -135,16 +139,20 @@ export const ProductsCart = ({
           );
         })}
       </section>
-      <section className="w-full flex flex-col items-center h-[8rem] mt-2 lg:w-1/4 border p-2 rounded-lg border-sky-500 bg-white shadow-lg">
-        <p className="self-start font-bold text-sm">Resumen</p>
-        <h2 className="text-2xl text-sky-600 flex gap-2 items-center font-bold">
-          <span className="font-bold text-base text-black">Total:</span> $
-          {totalPrice} ARS
-        </h2>
-        <p className="self-start text-xs">
-          Total de productos: {shoppingCart.length}
-        </p>
-        <ButtonCreateOrder idOrders={shoppingCart} />
+      <section className="w-full flex flex-col items-center justify-center h-[8.5rem] lg:w-[280px] p-2 rounded-lg border-sky-500 bg-white shadow-lg">
+        <div className="w-64 flex flex-col items-center rounded-sm justify-center">
+          <div>
+            <p className="self-start font-bold text-sm">Resumen</p>
+            <h2 className="text-2xl text-sky-600 flex gap-2 items-center font-bold">
+              <span className="font-bold text-base text-black">Total:</span> $
+              {totalPrice} ARS
+            </h2>
+            <p className="self-start text-xs">
+              Total de productos: {shoppingCart.length}
+            </p>
+          </div>
+          <ButtonCreateOrder shoppingCart={shoppingCart} />
+        </div>
       </section>
     </div>
   );

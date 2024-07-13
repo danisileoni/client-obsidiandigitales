@@ -1,8 +1,8 @@
-import { Footer } from '@/components/common/Footer';
 import { Navbar } from '@/components/common/Navbar';
 import { HomeIcon } from '@/components/icons/HomeIcon';
 import { CardProduct } from '@/components/products/CardProduct';
 import { PaginationProducts } from '@/components/products/PaginationProducts';
+import SkeletonCardProduct from '@/components/products/skeletons/SkeletonCardProduct';
 import { Category, handleFilter, handleFilterPrice } from '@/helpers';
 import { useReSideWindows } from '@/hooks/re-side-window';
 import type { ItemFilters } from '@/routes/product';
@@ -56,7 +56,7 @@ export const ProductsPage = ({
   const { showControls } = useReSideWindows();
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
-  const { data: products } = useQuery({
+  const { data: products, isLoading } = useQuery({
     queryKey: [
       'allProducts',
       offset,
@@ -88,13 +88,16 @@ export const ProductsPage = ({
   };
 
   const handleDeleteQueryParams = () => {
-    navigate({ search: (prev) => ({ page: prev.page }), replace: true });
+    navigate({
+      search: (prev) => ({ page: prev.page }),
+      replace: true,
+    });
   };
 
   return (
     <>
       <Navbar />
-      <head>
+      <header>
         <title>Productos | Compra los mejores juegos baratos</title>
         <meta
           name="description"
@@ -104,7 +107,7 @@ export const ProductsPage = ({
           name="keywords"
           content="juegos baratos, comprar juegos, juegos en oferta, juegos de acción, juegos de supervivencia, juegos de disparos"
         />
-      </head>
+      </header>
       <section className="flex flex-col items-center mt-5 mb-20">
         <div className="self-center flex flex-col">
           <div className="flex flex-col w-full">
@@ -251,13 +254,18 @@ export const ProductsPage = ({
             </div>
             <div className="flex flex-col items-center md:items-start w-full">
               <div className="grid grid-cols-4 max-md:grid-cols-2 max-lg:grid-cols-3 gap-4">
-                {products?.products.map((product) => {
-                  return (
-                    <article key={product.id} className="w-52 max-xs:w-36">
-                      <CardProduct product={product} />
-                    </article>
-                  );
-                })}
+                {isLoading
+                  ? Array.from({ length: 25 }).map((_, index) => (
+                      // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                      <SkeletonCardProduct key={index} />
+                    ))
+                  : products?.products.map((product) => {
+                      return (
+                        <article key={product.id} className="w-52 max-xs:w-36">
+                          <CardProduct product={product} />
+                        </article>
+                      );
+                    })}
               </div>
               <div className="mt-5 self-center">
                 <PaginationProducts
@@ -269,7 +277,6 @@ export const ProductsPage = ({
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

@@ -3,13 +3,14 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 
 export interface ProductCartStore {
   id: number;
-  account: string | null;
+  account: string;
 }
 
 interface ProductState {
   shoppingCart: ProductCartStore[];
   addCart: (product: ProductCartStore) => void;
   removeFromCart: (id: number | undefined) => void;
+  removeAllFromCart: () => void;
   updateCart: (product: ProductCartStore) => void;
 }
 
@@ -26,6 +27,7 @@ export const useShoppingCart = create<
         set((state) => ({
           shoppingCart: state.shoppingCart.filter((item) => item.id !== id),
         })),
+      removeAllFromCart: () => set(() => ({ shoppingCart: [] })),
       updateCart: (product: ProductCartStore) =>
         set((state) => {
           const existingProductIndex = state.shoppingCart.findIndex(

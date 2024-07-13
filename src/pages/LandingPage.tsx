@@ -98,7 +98,6 @@ export const LandingPage = () => {
           </Carousel>
         </section>
       </div>
-      <Footer />
     </>
   );
 };

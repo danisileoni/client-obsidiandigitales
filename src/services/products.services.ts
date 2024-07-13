@@ -1,5 +1,10 @@
 import { config } from './axios-config';
-import type { Product, ProductCart, Products } from './types-services';
+import type {
+  InfoProduct,
+  Product,
+  ProductCart,
+  Products,
+} from './types-services';
 
 export const getAllProducts = async (
   limit: number,
@@ -71,6 +76,108 @@ export const getSelectedProducts = async (
 
 export const getOneProduct = async (term: string): Promise<Product> => {
   const { data } = await config.get(`/products/${term}`);
+
+  return data;
+};
+
+export const patchInfoProduct = async (
+  id: string,
+  formData: FormData,
+  token: string | undefined,
+): Promise<Product> => {
+  const { data, status } = await config.patch(
+    `/products/info-products/${id}`,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    },
+  );
+
+  if (status !== 200) throw data;
+
+  return data;
+};
+
+export const patchProduct = async (
+  id: number,
+  body: { price?: number; pricePrimary?: number; priceSecondary?: number },
+  token: string | undefined,
+): Promise<Product> => {
+  const { data, status } = await config.patch(`/products/${id}`, body, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+
+  if (status !== 200) throw data;
+
+  return data;
+};
+
+export const postCreateProduct = async (
+  body: {
+    price?: number;
+    pricePrimary?: number;
+    priceSecondary?: number;
+  },
+  platformId: number,
+  infoProductId: string,
+  token: string | undefined,
+) => {
+  const { data, status } = await config.post(
+    `/products/create/${platformId}/${infoProductId}`,
+    body,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    },
+  );
+
+  if (status !== 201) throw data;
+
+  return data;
+};
+
+export const postCreateInfoProduct = async (
+  formData: FormData,
+  token: string | undefined,
+): Promise<InfoProduct> => {
+  const { data, status } = await config.post(
+    '/products/info-products/create',
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer $${token}`,
+      },
+      withCredentials: true,
+    },
+  );
+
+  if (status !== 201) throw data;
+
+  return data;
+};
+
+export const deleteProducts = async (id: number, token: string | undefined) => {
+  const { data, status } = await config.delete(`products/info-product/${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+
+  if (status !== 200) throw data;
 
   return data;
 };

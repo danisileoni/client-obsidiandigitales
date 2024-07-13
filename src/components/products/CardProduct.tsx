@@ -68,9 +68,9 @@ export const CardProduct = ({ product }: CardProductProps) => {
               return (
                 <ToolTipPs4
                   key={product.id}
-                  pricePrimary={product.priceSecondary}
+                  pricePrimary={product.pricePrimary}
                   priceSecondary={product.priceSecondary}
-                  salePrimary={product.sale.saleSecondary}
+                  salePrimary={product.sale.salePrimary}
                   saleSecondary={product.sale.saleSecondary}
                   sale={product.sale.sale}
                 />
@@ -81,9 +81,9 @@ export const CardProduct = ({ product }: CardProductProps) => {
                 <ToolTipPs5
                   key={product.id}
                   sale={product.sale.sale}
-                  pricePrimary={product.priceSecondary}
+                  pricePrimary={product.pricePrimary}
                   priceSecondary={product.priceSecondary}
-                  salePrimary={product.sale.saleSecondary}
+                  salePrimary={product.sale.salePrimary}
                   saleSecondary={product.sale.saleSecondary}
                 />
               );
@@ -108,7 +108,7 @@ export const CardProduct = ({ product }: CardProductProps) => {
         </div>
         <button
           type="button"
-          className="flex text-sky-700 border hover:bg-sky-700 text-black transition-all duration-300 border-sky-700 w-full justify-center p-1 rounded-md gap-2"
+          className="flex text-sky-700 border hover:bg-sky-700 transition-all duration-300 border-sky-700 w-full justify-center p-1 rounded-md gap-2"
         >
           Agregar <CartIcon />
         </button>

@@ -7,14 +7,13 @@ const copyrigth = new Date().getFullYear().toString();
 
 export const Footer = () => {
   return (
-    <footer className="bg-black pt-14 text-white flex flex-col items-center py-4 space-y-6">
-      <div className="flex flex-col md:flex-row md:justify-between items-center w-full max-w-screen-lg px-6 md:px-0">
-        <div className="flex flex-col items-center md:items-start md:mb-0">
+    <footer className="bg-[#262626] text-white py-10 w-full">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6 md:px-12">
+        <div className="flex flex-col items-center md:items-start mb-6 md:mb-0">
           <picture>
-            <img src={logo} className="w-40 md:w-52" alt="QuaraStore" />
+            <img src={logo} className="w-40 md:w-52 mb-4" alt="QuaraStore" />
           </picture>
-          <hr className="my-2 w-full" />
-          <ul className="flex text-sky-500 gap-4 mt-2">
+          <ul className="flex space-x-4">
             <li>
               <MercadoPagoIcon />
             </li>
@@ -23,61 +22,102 @@ export const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="flex flex-col md:flex-row gap-8 md:gap-16 mt-6 md:mt-0">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-16">
           <div className="text-center md:text-left">
-            <h5 className="text-lg font-bold">Información</h5>
-            <ul>
+            <h5 className="text-lg font-bold mb-2">Información</h5>
+            <ul className="space-y-2">
               <li>
-                <Link className="text-sky-500 underline">Quiénes Somos</Link>
+                <Link to="/about" className="text-sky-500 hover:underline">
+                  Quiénes Somos
+                </Link>
               </li>
               <li>
-                <Link className="text-sky-500 underline">
+                <Link to="/faq" className="text-sky-500 hover:underline">
                   Preguntas frecuentes
                 </Link>
               </li>
             </ul>
           </div>
           <div className="text-center md:text-left">
-            <h5 className="text-lg font-bold">Legal</h5>
-            <ul>
+            <h5 className="text-lg font-bold mb-2">Legal</h5>
+            <ul className="space-y-2">
               <li>
-                <Link className="text-sky-500 underline">
+                <Link
+                  to="/privacy-policy"
+                  className="text-sky-500 hover:underline"
+                >
                   Políticas de privacidad
                 </Link>
               </li>
               <li>
-                <Link className="text-sky-500 underline">
-                  Condiciones generales
+                <Link
+                  to="/legal-policy"
+                  className="text-sky-500 hover:underline"
+                >
+                  Pliticas Legales
                 </Link>
               </li>
               <li>
-                <Link className="text-sky-500 underline">Contacto</Link>
+                <Link
+                  to="/general-conditions"
+                  className="text-sky-500 hover:underline"
+                >
+                  Condiciones generales
+                </Link>
               </li>
             </ul>
           </div>
           <div className="text-center md:text-left">
-            <h5 className="text-lg font-bold">Redes Sociales</h5>
-            <ul>
+            <h5 className="text-lg font-bold mb-2">Redes Sociales</h5>
+            <ul className="space-y-2">
               <li>
-                <Link className="text-sky-500 underline">Instagram</Link>
+                <a
+                  href="https://www.instagram.com/quarastoree/"
+                  className="text-sky-500 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
               </li>
               <li>
-                <Link className="text-sky-500 underline">Facebook</Link>
+                <a
+                  href="https://www.facebook.com/Quarastore"
+                  className="text-sky-500 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Facebook
+                </a>
               </li>
               <li>
-                <Link className="text-sky-500 underline">Whatsapp</Link>
+                <a
+                  href="https://api.whatsapp.com/send/?phone=3517410781&text&type=phone_number&app_absent=0"
+                  className="text-sky-500 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Whatsapp
+                </a>
               </li>
               <li>
-                <Link className="text-sky-500 underline">Telegram</Link>
+                <a
+                  href="https://t.me/provquarastore"
+                  className="text-sky-500 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Telegram
+                </a>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div className="w-full">
-        <hr className="w-full my-2" />
-        <p className="text-center md:text-end pr-0 md:pr-5">
-          © Copyright {copyrigth} Todos los derechos reservados para QuaraStore
+      <div className="container mx-auto mt-6 px-6 md:px-12">
+        <hr className="border-gray-700" />
+        <p className="text-center md:text-right mt-4 text-gray-400">
+          &copy; {copyrigth} Todos los derechos reservados para QuaraStore
         </p>
       </div>
     </footer>

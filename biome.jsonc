@@ -19,6 +19,9 @@
         "noInferrableTypes": "off",
         "useDefaultParameterLast": "off",
       },
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+      },
     },
   },
   "javascript": {
