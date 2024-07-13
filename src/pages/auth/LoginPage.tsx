@@ -94,8 +94,7 @@ export const LoginPage = () => {
                   type="button"
                   className="border w-10 rounded-sm shadow-lg border-sky-300 flex items-center justify-center p-1"
                   onClick={async () => {
-                    window.location.href =
-                      'http://localhost:3000/api/v1/auth/google/login';
+                    window.location.href = `${import.meta.env.VITE_HOST_BACKEND}/auth/google/login`;
                   }}
                 >
                   <GoogleIcon />
