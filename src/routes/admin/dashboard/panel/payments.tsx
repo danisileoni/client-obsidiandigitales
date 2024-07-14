@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 const PaymentsDashboardPage = lazy(
   () => import('@/pages/dashboard/PaymentsDashboardPage'),
 );
@@ -28,5 +28,11 @@ function PaymentDashboard() {
   const { page } = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
 
-  return <PaymentsDashboardPage page={page} navigate={navigate} />;
+  return (
+    <Suspense
+      fallback={<div className="w-full h-screen bg-[#1f1f1f]">Loading...</div>}
+    >
+      <PaymentsDashboardPage page={page} navigate={navigate} />
+    </Suspense>
+  );
 }

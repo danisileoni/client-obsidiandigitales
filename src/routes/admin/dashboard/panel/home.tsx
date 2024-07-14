@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 const HomeDashboardPage = lazy(
   () => import('@/pages/dashboard/HomeDashboardPage'),
 );
@@ -13,5 +13,11 @@ export const Route = createFileRoute('/admin/dashboard/panel/home')({
       redirect({ to: '/auth/login' });
     }
   },
-  component: () => <HomeDashboardPage />,
+  component: () => (
+    <Suspense
+      fallback={<div className="w-full h-screen bg-[#1f1f1f]">Loading...</div>}
+    >
+      <HomeDashboardPage />
+    </Suspense>
+  ),
 });

@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 const ProductsDashboardPage = lazy(
   () => import('@/pages/dashboard/ProductsDashboardPage'),
 );
@@ -28,5 +28,11 @@ function ProductsDashboard() {
   const { page } = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
 
-  return <ProductsDashboardPage page={page} navigate={navigate} />;
+  return (
+    <Suspense
+      fallback={<div className="w-full h-screen bg-[#1f1f1f]">Loading...</div>}
+    >
+      <ProductsDashboardPage page={page} navigate={navigate} />
+    </Suspense>
+  );
 }

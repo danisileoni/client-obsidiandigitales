@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
 import * as v from 'valibot';
 const DiscountsDashboardPage = lazy(
@@ -28,5 +28,11 @@ function DiscountsDashboard() {
   const { page } = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
 
-  return <DiscountsDashboardPage navigate={navigate} page={page} />;
+  return (
+    <Suspense
+      fallback={<div className="w-full h-screen bg-[#1f1f1f]">Loading...</div>}
+    >
+      <DiscountsDashboardPage navigate={navigate} page={page} />
+    </Suspense>
+  );
 }
