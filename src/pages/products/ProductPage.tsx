@@ -20,7 +20,7 @@ import { VerifyIcon } from '@/components/icons/VerifyIcon';
 import { ListCheckIcon } from '@/components/icons/ListCheckIcon';
 import { SupplierIcon } from '@/components/icons/SupplierIcon';
 import { CardProduct } from '@/components/products/CardProduct';
-import { Link } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
 import { HomeIcon } from '@/components/icons/HomeIcon';
 import { useQuery } from '@tanstack/react-query';
 import { useReSideWindows } from '@/hooks/re-side-window';
@@ -44,6 +44,7 @@ const ProductPage = ({ param }: ProductProps) => {
   const [accountProduct, setAccountProduct] = useState<AccountProductId>();
   const { showControls } = useReSideWindows();
   const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
+  const navigate = useNavigate();
 
   const { data: product } = useQuery({
     queryKey: ['Product'],
@@ -123,7 +124,7 @@ const ProductPage = ({ param }: ProductProps) => {
     return 0;
   };
 
-  const handleSetCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleBuy = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (product && accountProduct) {
@@ -131,9 +132,41 @@ const ProductPage = ({ param }: ProductProps) => {
         ($product) => $product.id === +accountProduct.id,
       );
 
-      console.log(product);
-      console.log(accountProduct);
-      console.log(foundProduct);
+      if (foundProduct && accountProduct.account) {
+        const existingProduct = shoppingCart.find(
+          (item) => item.id === foundProduct.id,
+        );
+
+        if (existingProduct) {
+          if (existingProduct.account === 'Primary') {
+            updateCart({
+              id: foundProduct.id,
+              account: accountProduct.account,
+            });
+          } else if (existingProduct.account === 'Secondary') {
+            updateCart({
+              id: foundProduct.id,
+              account: accountProduct.account,
+            });
+          } else {
+            removeFromCart(existingProduct.id);
+            addCart({ id: foundProduct.id, account: accountProduct.account });
+          }
+        } else {
+          addCart({ id: foundProduct.id, account: accountProduct.account });
+        }
+        navigate({ to: '/shopping-cart' });
+      }
+    }
+  };
+
+  const handleSetCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (product && accountProduct) {
+      const foundProduct = product?.products.find(
+        ($product) => $product.id === +accountProduct.id,
+      );
 
       if (foundProduct && accountProduct.account) {
         const existingProduct = shoppingCart.find(
@@ -282,6 +315,7 @@ const ProductPage = ({ param }: ProductProps) => {
                     <div className="gap-2 mb-1 mt-4 flex flex-col items-center">
                       <button
                         type="button"
+                        onClick={handleBuy}
                         className="w-[92%] shadow-sm shadow-gray-400 hover:bg-sky-600 bg-sky-500 rounded-md text-white pr-2 pt-1 pb-1 pl-2 transition-all duration-300"
                       >
                         Comprar
