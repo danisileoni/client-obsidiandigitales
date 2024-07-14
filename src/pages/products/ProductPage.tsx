@@ -239,7 +239,7 @@ export const ProductPage = ({ param }: ProductProps) => {
                       <div className="grid md:grid-cols-1 grid-cols-1 gap-3 lg:grid-cols-2 max-md:gap-2 justify-center">
                         {product !== undefined ? (
                           <CardTargetPlatform
-                            idInfo={product.id}
+                            idInfo={`${product.id}`}
                             product={product}
                             sendIdProduct={handleSetIdPriceChild}
                           />
@@ -272,7 +272,7 @@ export const ProductPage = ({ param }: ProductProps) => {
                 </div>
                 <div className="">
                   <div className="mt-4 shadow-md shadow-gray-300 flex flex-col border rounded-sm border-sky-500">
-                    <p className="text-xs bg-sky-500 font-bold text-black text-center p-1">
+                    <p className="text-xs bg-sky-500 font-bold text-white text-center p-1">
                       AÑADIR | COMPRAR
                     </p>
                     <p className="ml-2 mt-4">Precio final:</p>
@@ -282,7 +282,7 @@ export const ProductPage = ({ param }: ProductProps) => {
                     <div className="gap-2 mb-1 mt-4 flex flex-col items-center">
                       <button
                         type="button"
-                        className="w-[92%] shadow-sm shadow-gray-400 hover:bg-sky-600 bg-sky-500 rounded-md text-black pr-2 pt-1 pb-1 pl-2 transition-all duration-300"
+                        className="w-[92%] shadow-sm shadow-gray-400 hover:bg-sky-600 bg-sky-500 rounded-md text-white pr-2 pt-1 pb-1 pl-2 transition-all duration-300"
                       >
                         Comprar
                       </button>
@@ -296,7 +296,7 @@ export const ProductPage = ({ param }: ProductProps) => {
                     </div>
                   </div>
                   <div className="shadow-md shadow-gray-300 mt-3 border rounded-sm border-sky-500">
-                    <p className="text-xs pl-1 font-bold bg-sky-500 text-black">
+                    <p className="text-xs pl-1 font-bold bg-sky-500 text-white">
                       DISPONIBLE AL COMPRAR:
                     </p>
                     <div className="p-2 gap-2 flex">

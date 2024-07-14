@@ -158,7 +158,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
                 visual: { hidePaymentButton: true, hideFormTitle: true },
               }}
               initialization={{
-                amount: (() => (order?.total ? order.total : 0))(),
+                amount: (() => (order?.total ? +order.total : 0))(),
               }}
             />
           </div>
