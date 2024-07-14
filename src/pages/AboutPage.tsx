@@ -86,10 +86,10 @@ export const AboutPage = () => {
               <p className="mt-4">
                 Correo Electrónico de Contacto:{' '}
                 <a
-                  href="mailto:Quarastore@gmail.com"
+                  href="mailto:quarastorecontact@gmail.com"
                   className="text-sky-600 underline"
                 >
-                  Quarastore@gmail.com
+                  quarastorecontact@gmail.com
                 </a>
               </p>
             </div>

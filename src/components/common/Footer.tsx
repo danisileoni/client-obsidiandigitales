@@ -54,7 +54,7 @@ export const Footer = () => {
                   to="/legal-policy"
                   className="text-sky-500 hover:underline"
                 >
-                  Pliticas Legales
+                  Politicas Legales
                 </Link>
               </li>
               <li>

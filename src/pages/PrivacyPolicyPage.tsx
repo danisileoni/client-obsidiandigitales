@@ -39,7 +39,7 @@ export const PrivacyPolicyPage = () => {
                   contraseña encriptada.
                 </li>
                 <li>
-                  <strong>Información de pago:</strong> nro. de pedido.
+                  <strong>Información de pago:</strong> número de pedido.
                 </li>
                 <li>
                   <strong>Datos técnicos:</strong> dirección IP, tipo y versión
@@ -157,7 +157,8 @@ export const PrivacyPolicyPage = () => {
               </p>
               <ul className="list-disc list-inside mt-2">
                 <li>
-                  <strong>Correo electrónico:</strong> QuaraStore@gmail.com
+                  <strong>Correo electrónico:</strong>{' '}
+                  quarastorecontact@gmail.com
                 </li>
                 <li>
                   <strong>Dirección:</strong> Tienda Digital

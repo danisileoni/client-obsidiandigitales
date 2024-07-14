@@ -91,7 +91,7 @@ export const LoginPage = () => {
               </button>
               <div className="flex w-full justify-between mb-2">
                 <Link className="text-sky-700 underline">
-                  Olvidaste la contraseña?
+                  ¿Olvidaste la contraseña?
                 </Link>
                 <Link to="/auth/register" className="text-sky-700 underline">
                   Registrarse

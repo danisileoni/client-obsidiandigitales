@@ -91,10 +91,10 @@ export const LegalPolicyPage = () => {
                 nuestro sitio web, puede contactarnos en:
               </p>
               <p>
-                <strong>Correo Electrónico:</strong> QuaraStore@gmail.com
+                <strong>Correo Electrónico:</strong> quarastorecontact@gmail.com
               </p>
               <p>
-                <strong>Teléfono:</strong> [Número de Teléfono]
+                <strong>Teléfono:</strong> +54 351 7410781
               </p>
             </div>
           </article>

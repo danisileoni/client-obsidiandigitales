@@ -147,11 +147,11 @@ export const GeneralConditionsPage = () => {
           </article>
           <article className="mb-8">
             <h3 className="text-3xl font-bold text-sky-600 underline mb-4">
-              Baneo en su cuenta Playstation
+              Baneo en su cuenta PlayStation
             </h3>
             <div className="ml-4 text-lg leading-relaxed">
               <p>
-                En caso de que su cuenta de Playstation sea baneada, no nos
+                En caso de que su cuenta de PlayStation sea baneada, no nos
                 hacemos cargo ya que es problema de la empresa misma.
               </p>
             </div>
