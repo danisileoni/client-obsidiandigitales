@@ -42,7 +42,13 @@ export const LoginDashboardPage = () => {
     <section className="flex text-white bg-[#0b0b0b] flex-col items-center h-screen justify-center">
       <div className="bg-[#202020] p-5 rounded-sm">
         <h3 className="text-xl mb-2">Ingresar al Dashboard</h3>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-60">
+        <form
+          onSubmit={(e) => {
+            clearErrors();
+            handleSubmit(onSubmit)(e);
+          }}
+          className="flex flex-col w-60"
+        >
           <label htmlFor="email">Email:</label>
           <input
             id="email"
@@ -50,7 +56,6 @@ export const LoginDashboardPage = () => {
             className="bg-[#1b1b1b] p-1 pt-2 pb-2 rounded"
             placeholder="example@email.com"
             {...register('email')}
-            onChange={() => clearErrors('errorAuthorized')}
           />
           <label className="mt-2" htmlFor="password">
             Password:
@@ -61,7 +66,6 @@ export const LoginDashboardPage = () => {
             className="bg-[#1b1b1b] p-1 pb-2 pt-2 rounded"
             placeholder="password"
             {...register('password')}
-            onChange={() => clearErrors('errorAuthorized')}
           />
           <div className="min-h-[20px]">
             <div>

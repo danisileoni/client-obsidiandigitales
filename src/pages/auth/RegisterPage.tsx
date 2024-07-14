@@ -55,7 +55,10 @@ export const RegisterPage = () => {
         <div className="flex flex-col items-center justify-center w-full md:w-1/2">
           <form
             className="flex flex-col items-center w-full"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={(e) => {
+              clearErrors();
+              handleSubmit(onSubmit)(e);
+            }}
           >
             <p className="mb-5 text-3xl md:text-5xl font-bold">Registrarse</p>
             <div className="flex flex-col w-full">
@@ -93,7 +96,6 @@ export const RegisterPage = () => {
                     message: 'El usuario debe tener al menos 6 caracteres',
                   },
                 })}
-                onChange={() => clearErrors('customError')}
                 className="p-2 mb-2 rounded-md border-2 focus:border-sky-500 focus:outline-none bg-gray-100 w-full"
                 type="text"
               />
@@ -111,7 +113,6 @@ export const RegisterPage = () => {
                     message: 'El email no es válido',
                   },
                 })}
-                onChange={() => clearErrors('customError')}
                 className="p-2 mb-2 rounded-md border-2 focus:border-sky-500 focus:outline-none bg-gray-100 w-full"
                 type="text"
               />

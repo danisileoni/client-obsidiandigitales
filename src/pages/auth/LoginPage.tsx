@@ -15,6 +15,9 @@ export const LoginPage = () => {
     formState: { errors },
     handleSubmit,
     clearErrors,
+    getValues,
+    setValue,
+    trigger,
   } = useForm<LoginInput>();
   const navigate = useNavigate();
   const { showControls } = useReSideWindows();
@@ -22,6 +25,11 @@ export const LoginPage = () => {
   const onSubmit = async (data: LoginInput) => {
     try {
       const { password, username } = data;
+
+      console.log({
+        password,
+        username,
+      });
 
       await loginAuth({ password, username });
       navigate({ to: '/' });
@@ -49,7 +57,10 @@ export const LoginPage = () => {
         <div className="flex flex-col items-center justify-center w-full md:w-1/2">
           <form
             className="flex flex-col items-center w-full"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={(e) => {
+              clearErrors();
+              handleSubmit(onSubmit)(e);
+            }}
           >
             <p className="mb-5 text-3xl md:text-5xl font-bold">Inicia Sesión</p>
             <div className="flex flex-col w-full">
@@ -58,14 +69,12 @@ export const LoginPage = () => {
                 className="p-2 mb-2 rounded-md border-2 focus:border-sky-500 focus:outline-none bg-gray-100 w-full"
                 type="text"
                 {...register('username')}
-                onChange={() => clearErrors('errorAuthorized')}
               />
               <label className="mb-1">Contraseña:</label>
               <input
                 className="p-2 mb-2 rounded-md border-2 focus:border-sky-500 focus:outline-none bg-gray-100 w-full"
                 type="password"
                 {...register('password')}
-                onChange={() => clearErrors('errorAuthorized')}
               />
               <div className="min-h-[20px] mb-2">
                 {errors.errorAuthorized && (

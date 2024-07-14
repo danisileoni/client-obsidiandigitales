@@ -11,7 +11,7 @@ import { CardProduct } from '@/components/products/CardProduct';
 import { useQuery } from '@tanstack/react-query';
 import { useReSideWindows } from '@/hooks/re-side-window';
 import { Navbar } from '@/components/common/Navbar';
-import { Footer } from '@/components/common/Footer';
+import { Link } from '@tanstack/react-router';
 
 export const LandingPage = () => {
   const { showControls } = useReSideWindows();
@@ -43,35 +43,55 @@ export const LandingPage = () => {
             Preferencia.
           </h1>
         </div>
-        <section className="pt-5 pl-2 pr-2 md:pt-10 md:pl-24 md:pr-24 xl:pr-32 xl:pl-32">
-          <h2 className="text-2xl font-bold md:text-4xl">Ofertas</h2>
-          <Carousel
-            opts={{
-              align: 'start',
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {' '}
-              {productsDiscount?.products.map((product) => {
-                return (
-                  <CarouselItem
-                    className="max-md:basis-52 md:basis-52 xl:basis-56 lg:basis-56 mb-6 max-xs:basis-40"
-                    key={product.id}
-                  >
-                    <CardProduct product={product} />
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-            {showControls && <CarouselPrevious />}
-            {showControls && <CarouselNext />}
-          </Carousel>
-        </section>
+        {productsDiscount && productsDiscount?.products.length > 0 ? (
+          <section className="pt-5 pl-2 pr-2 md:pt-10 md:pl-24 md:pr-24 xl:pr-32 xl:pl-32">
+            <div className="justify-between flex items-end">
+              <h2 className="text-2xl font-bold mb-4 md:text-4xl">Ofertas</h2>
+              <Link
+                to="/product"
+                search={() => ({ page: '1', sale: true })}
+                className="text-sky-700"
+              >
+                Ver mas
+              </Link>
+            </div>
+            <Carousel
+              opts={{
+                align: 'start',
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {' '}
+                {productsDiscount?.products.map((product) => {
+                  return (
+                    <CarouselItem
+                      className="max-md:basis-52 md:basis-52 xl:basis-56 lg:basis-56 mb-6 max-xs:basis-40"
+                      key={product.id}
+                    >
+                      <CardProduct product={product} />
+                    </CarouselItem>
+                  );
+                })}
+              </CarouselContent>
+              {showControls && <CarouselPrevious />}
+              {showControls && <CarouselNext />}
+            </Carousel>
+          </section>
+        ) : (
+          ''
+        )}
+
         <section className="pt-5 pl-2 pr-2 md:pt-10 md:pl-20 md:pr-20 xl:pr-32 xl:pl-32">
           <div className="justify-between flex items-end">
             <h2 className="text-2xl font-bold md:text-4xl mb-4">Ingresos</h2>
-            <p className="text-sky-700">Ver mas</p>
+            <Link
+              to="/product"
+              search={() => ({ page: '1' })}
+              className="text-sky-700"
+            >
+              Ver mas
+            </Link>
           </div>
           <hr className="pb-5" />
           <Carousel
