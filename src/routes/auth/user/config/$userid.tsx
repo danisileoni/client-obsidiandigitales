@@ -1,4 +1,5 @@
-import { ConfigUserPage } from '@/pages/auth/user/ConfigUserPage';
+import { lazy } from 'react';
+const ConfigUserPage = lazy(() => import('@/pages/auth/user/ConfigUserPage'));
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/auth/user/config/$userid')({

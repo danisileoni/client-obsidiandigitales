@@ -36,7 +36,7 @@ type ProductProps = {
   param: string;
 };
 
-export const ProductPage = ({ param }: ProductProps) => {
+const ProductPage = ({ param }: ProductProps) => {
   const { addCart, removeFromCart, updateCart, shoppingCart } =
     useShoppingCart();
 
@@ -131,10 +131,6 @@ export const ProductPage = ({ param }: ProductProps) => {
         ($product) => $product.id === +accountProduct.id,
       );
 
-      console.log(product);
-      console.log(accountProduct);
-      console.log(foundProduct);
-
       if (foundProduct && accountProduct.account) {
         const existingProduct = shoppingCart.find(
           (item) => item.id === foundProduct.id,
@@ -169,10 +165,10 @@ export const ProductPage = ({ param }: ProductProps) => {
   return (
     <>
       <Navbar />
-      <article className="flex flex-col items-center justify-start max-lg:mt-5 md:flex-row md:justify-center md:items-start max-md:bg-white">
+      <article className="flex flex-col items-center justify-start md:mt-5 md:flex-row md:justify-center md:items-start bg-white p-4 md:p-8 rounded-t-md">
         <div>
           {showControls && (
-            <div className=" flex gap-1 flex-row mt-7 items-center">
+            <div className="flex gap-1 flex-row mt-7 items-center">
               <HomeIcon />
               <Link
                 className="text-gray-500 hover:text-sky-400 transition-colors duration-500"
@@ -192,12 +188,12 @@ export const ProductPage = ({ param }: ProductProps) => {
               <p className="text-sky-700">{product?.title}</p>
             </div>
           )}
-          <div className="flex flex-col items-center bg-white p-4 md:p-8 rounded-t-md justify-start md:flex-row md:justify-center md:items-start">
+          <div className="flex flex-col items-center md:flex-row md:justify-center md:items-start">
             <Carousel
               plugins={[plugin.current]}
               onMouseEnter={plugin.current.stop}
               onMouseLeave={plugin.current.reset}
-              className="shadow-md shadow-gray-300 rounded-md bg-gray-300 h-[350px] w-[250px] max-xs:h-[350px] max-xs:w-[300px]"
+              className="shadow-md shadow-gray-300 rounded-md bg-gray-300 h-[350px] w-[250px] xs:h-[350px] xs:w-[300px]"
             >
               <CarouselContent>
                 {product?.productImages.map((image) => {
@@ -215,9 +211,9 @@ export const ProductPage = ({ param }: ProductProps) => {
                 })}
               </CarouselContent>
             </Carousel>
-            <div className="md:pl-6 max-lg:flex-col max-md:items-center item flex max-md:w-full">
+            <div className="md:pl-6 md:flex-col md:items-start flex flex-col items-center w-full">
               <div>
-                <h2 className=" max-w-[520px] overflow-hidden text-start text-xl max-md:w-full md:text-3xl font-semibold">
+                <h2 className="text-xl md:text-3xl font-semibold">
                   {product?.title}
                 </h2>
                 <p className="text-2xl font-bold">
@@ -231,12 +227,12 @@ export const ProductPage = ({ param }: ProductProps) => {
                   </span>
                 </p>
                 <div>
-                  <form action="">
+                  <form>
                     <fieldset>
-                      <legend className="mb-2 w-full max-md:flex max-md:justify-center">
+                      <legend className="mb-2 text-center">
                         Seleccione la plataforma que desea:
                       </legend>
-                      <div className="grid md:grid-cols-1 grid-cols-1 gap-3 lg:grid-cols-2 max-md:gap-2 justify-center">
+                      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
                         {product !== undefined ? (
                           <CardTargetPlatform
                             idInfo={`${product.id}`}
@@ -251,8 +247,8 @@ export const ProductPage = ({ param }: ProductProps) => {
                   </form>
                 </div>
               </div>
-              <div className="ml-0 mt-2 lg:ml-5 lg:mt-0 max-lg:w-64 ">
-                <div className="flex flex-col max-md:items-center">
+              <div className="mt-2 lg:mt-0 lg:ml-5 w-full lg:w-64">
+                <div className="flex flex-col items-center">
                   <p className="text-xs font-bold mb-1">
                     ¡Compártelo con alguien a quien creas podría <br />{' '}
                     gustarle!
@@ -265,109 +261,79 @@ export const ProductPage = ({ param }: ProductProps) => {
                       );
                       setCopyElement(true);
                     }}
-                    className={` ${copyElement ? 'bg-sky-500 text-black' : ''} text-sm flex border border-sky-500 w-52 lg:w-full justify-center items-center shadow hover:shadow-sky-500 transition-shadow duration-500 gap-2`}
+                    className={` ${copyElement ? 'bg-sky-500 text-black' : ''} text-sm flex border border-sky-500 w-full justify-center items-center shadow hover:shadow-sky-500 transition-shadow duration-500 gap-2`}
                   >
-                    {copyElement ? 'Copiado' : 'Compartir'} <ShareIcon />
+                    {copyElement ? '¡Enlace copiado!' : 'Copiar enlace'}
+                    <ShareIcon />
                   </button>
+                  <button
+                    type="button"
+                    onClick={handleSetCart}
+                    className="bg-sky-600 hover:bg-sky-800 text-white text-sm font-bold p-2 mt-3 w-full flex justify-center items-center gap-1 rounded-md shadow hover:shadow-md hover:shadow-sky-400 transition-all duration-500"
+                  >
+                    <CartIcon />
+                    <span className="ml-1">Añadir al carrito</span>
+                  </button>
+                  <Toaster richColors />
                 </div>
-                <div className="">
-                  <div className="mt-4 shadow-md shadow-gray-300 flex flex-col border rounded-sm border-sky-500">
-                    <p className="text-xs bg-sky-500 font-bold text-white text-center p-1">
-                      AÑADIR | COMPRAR
-                    </p>
-                    <p className="ml-2 mt-4">Precio final:</p>
-                    <p className="text-2xl font-bold ml-2 text-gray-800 w-full">
-                      ${handleSelectPriceProduct(accountProduct)} ARS
-                    </p>
-                    <div className="gap-2 mb-1 mt-4 flex flex-col items-center">
-                      <button
-                        type="button"
-                        className="w-[92%] shadow-sm shadow-gray-400 hover:bg-sky-600 bg-sky-500 rounded-md text-white pr-2 pt-1 pb-1 pl-2 transition-all duration-300"
-                      >
-                        Comprar
-                      </button>
-                      <button
-                        type="button"
-                        className="flex justify-center w-[92%] border border-sky-500 rounded-md mb-2 mt-2 pr-2 pt-1 pb-1 pl-2 shadow-sm shadow-gray-400 hover:bg-sky-500 text-sky-700 transition-all duration-300"
-                        onClick={handleSetCart}
-                      >
-                        Añadir al carrito <CartIcon />
-                      </button>
-                    </div>
+                <div className="flex flex-col items-center gap-3 mt-5">
+                  <h3 className="text-sm font-bold text-center">
+                    Pagalo hasta en 6 cuotas sin interés
+                  </h3>
+                  <div className="flex flex-row items-center gap-1">
+                    <PaypalCardIcon />
+                    <VisaMasterCardIcon />
                   </div>
-                  <div className="shadow-md shadow-gray-300 mt-3 border rounded-sm border-sky-500">
-                    <p className="text-xs pl-1 font-bold bg-sky-500 text-white">
-                      DISPONIBLE AL COMPRAR:
-                    </p>
-                    <div className="p-2 gap-2 flex">
-                      <PaypalCardIcon />
-                      <VisaMasterCardIcon />
-                    </div>
-                  </div>
+                </div>
+                <div className="flex flex-col items-center gap-3 mt-5">
+                  <h3 className="text-sm font-bold text-center">
+                    Garantías y beneficios
+                  </h3>
+                  <ul className="list-none text-xs text-gray-700 flex flex-col items-center gap-2">
+                    <li className="flex items-center gap-2">
+                      <WarrantyIcon />
+                      <span className="text-center">
+                        Garantía de devolución
+                      </span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <VerifyIcon />
+                      <span className="text-center">Producto verificado</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <ListCheckIcon />
+                      <span className="text-center">
+                        Lista de productos certificados
+                      </span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <SupplierIcon />
+                      <span className="text-center">Proveedor confiable</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
-          <div className="w-full pb-8 bg-white rounded-b-md max-md:flex max-lg:items-center max-lg:flex-col max-md:items-center flex flex-col">
-            <div>
-              <div className="lg:pb-4 max-md:flex-col max-md:p-5 max-lg:p-3 lg:pl-6 lg:pr-6 lg:ml-8 justify-between lg:mr-8 bg-sky-500 rounded-xl flex shadow-md shadow-sky-900">
-                <div className="flex flex-col items-center">
-                  <WarrantyIcon />
-                  <p className="font-bold text-white">Garantia permanente.</p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <VerifyIcon />
-                  <p className="font-bold text-center text-white">Original.</p>
-                </div>{' '}
-                <div className="flex flex-col items-center">
-                  <ListCheckIcon />
-                  <p className="font-bold text-center text-white">
-                    Stock garantizado.
-                  </p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <SupplierIcon />
-                  <p className="font-bold text-white">
-                    Proveedor con antiguedad.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="mt-5 ml-8 flex flex-col max-lg:ml-0 max-md:ml-0">
-              <p className="text-lg font-bold">Descripcion:</p>
-              <div className="whitespace-pre-line bg-gray-100 max-md:max-w-64 max-lg:max-w-xl max-w-[1057px] p-2 rounded-md">
-                <p>{product?.description}</p>
-              </div>
+          <div className="mt-5">
+            <h2 className="text-lg font-bold text-center">Otros productos</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-5">
+              {products?.products.map((product) => (
+                <CardProduct
+                  key={product.id}
+                  id={product.id}
+                  image={product.infoProduct.images}
+                  title={product.title}
+                  price={product.price}
+                  slug={product.slug}
+                />
+              ))}
             </div>
           </div>
         </div>
       </article>
-      <div className=" mt-5 flex flex-col mb-20 items-center max-lg:ml-0 max-md:ml-0">
-        <p className="text-xl font-bold md:text-2xl mb-4">Otros Productos</p>
-        <Carousel
-          opts={{
-            align: 'start',
-          }}
-          className="w-[79%]"
-        >
-          <CarouselContent className="-ml-5 md:-ml-2">
-            {' '}
-            {products?.products.map((product) => {
-              return (
-                <CarouselItem
-                  className="max-md:basis-52 md:basis-56 xl:basis-56 lg:basis-56 mb-6 max-xs:basis-40"
-                  key={product.id}
-                >
-                  <CardProduct product={product} />
-                </CarouselItem>
-              );
-            })}
-          </CarouselContent>
-          {showControls && <CarouselPrevious />}
-          {showControls && <CarouselNext />}
-        </Carousel>
-        <Toaster position="bottom-right" richColors />
-      </div>
     </>
   );
 };
+
+export default ProductPage;

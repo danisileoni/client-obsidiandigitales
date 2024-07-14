@@ -1,4 +1,5 @@
-import { PaymentPage } from '@/pages/PaymentPage';
+import { lazy } from 'react';
+const PaymentPage = lazy(() => import('@/pages/PaymentPage'));
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/shopping-cart/payment/$idOrder')({

@@ -15,7 +15,7 @@ interface ResultPayment {
   paidTrue: boolean;
 }
 
-export const ProcessPaymentPage = ({ orderId }: { orderId: string }) => {
+const ProcessPaymentPage = ({ orderId }: { orderId: string }) => {
   const { removeAllFromCart } = useShoppingCart();
   const [result, setResult] = useState<ResultPayment>();
   const [message, setMessage] = useState<string>();
@@ -125,3 +125,5 @@ export const ProcessPaymentPage = ({ orderId }: { orderId: string }) => {
     </>
   );
 };
+
+export default ProcessPaymentPage;

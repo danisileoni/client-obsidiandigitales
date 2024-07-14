@@ -20,7 +20,7 @@ interface PaymentsProps extends ItemsDashboardFilter {
   navigate: UseNavigateResult<'/admin/dashboard/panel/accounts'>;
 }
 
-export const UsersDashboardPage = ({ page, navigate }: PaymentsProps) => {
+const UsersDashboardPage = ({ page, navigate }: PaymentsProps) => {
   const limit = 10;
   const currentPage = Number(page);
   const offset = (currentPage - 1) * limit;
@@ -137,3 +137,5 @@ export const UsersDashboardPage = ({ page, navigate }: PaymentsProps) => {
     </section>
   );
 };
+
+export default UsersDashboardPage;

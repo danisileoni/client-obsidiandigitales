@@ -1,4 +1,7 @@
-import { ProductsDashboardPage } from '@/pages/dashboard/ProductsDashboardPage';
+import { lazy } from 'react';
+const ProductsDashboardPage = lazy(
+  () => import('@/pages/dashboard/ProductsDashboardPage'),
+);
 import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
 import * as v from 'valibot';
 

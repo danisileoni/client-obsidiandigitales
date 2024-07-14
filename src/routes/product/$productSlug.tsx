@@ -1,4 +1,5 @@
-import { ProductPage } from '@/pages/products/ProductPage';
+import { lazy } from 'react';
+const ProductPage = lazy(() => import('@/pages/products/ProductPage'));
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/product/$productSlug')({

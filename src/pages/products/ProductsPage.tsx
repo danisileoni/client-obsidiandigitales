@@ -37,7 +37,7 @@ const platformArray = [
   'PlayStation 5',
 ];
 
-export const ProductsPage = ({
+const ProductsPage = ({
   category,
   page,
   platform,
@@ -280,3 +280,5 @@ export const ProductsPage = ({
     </>
   );
 };
+
+export default ProductsPage;

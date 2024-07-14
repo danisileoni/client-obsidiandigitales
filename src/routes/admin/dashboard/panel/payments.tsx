@@ -1,4 +1,7 @@
-import { PaymentsDashboardPage } from '@/pages/dashboard/PaymentsDashboardPage';
+import { lazy } from 'react';
+const PaymentsDashboardPage = lazy(
+  () => import('@/pages/dashboard/PaymentsDashboardPage'),
+);
 import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
 import * as v from 'valibot';
 

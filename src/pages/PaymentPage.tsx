@@ -2,7 +2,7 @@ import { BreadcrumbsPay } from '@/components/common/BreadcrumbsPay';
 import { Navbar } from '@/components/common/Navbar';
 import { MethodsPay } from '@/components/payments/MethodsPay';
 
-export const PaymentPage = ({ id }: { id: string }) => {
+const PaymentPage = ({ id }: { id: string }) => {
   return (
     <>
       <div>
@@ -18,3 +18,5 @@ export const PaymentPage = ({ id }: { id: string }) => {
     </>
   );
 };
+
+export default PaymentPage;

@@ -1,4 +1,5 @@
-import { ProcessPaymentPage } from '@/pages/ProcessPaymentPage';
+import { lazy } from 'react';
+const ProcessPaymentPage = lazy(() => import('@/pages/ProcessPaymentPage'));
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute(

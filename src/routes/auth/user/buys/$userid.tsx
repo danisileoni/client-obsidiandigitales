@@ -1,4 +1,5 @@
-import { BuysUserPage } from '@/pages/auth/user/BuysUserPage';
+import { lazy } from 'react';
+const BuysUserPage = lazy(() => import('@/pages/auth/user/BuysUserPage'));
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/auth/user/buys/$userid')({

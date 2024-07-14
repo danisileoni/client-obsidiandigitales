@@ -25,7 +25,7 @@ import {
   getTotalProceeds,
 } from '@/services/order.service';
 
-export const HomeDashboardPage = () => {
+const HomeDashboardPage = () => {
   const { data: countAccounts } = useQuery({
     queryKey: ['counts-account'],
     queryFn: () => getAccountActives(),
@@ -289,3 +289,5 @@ export const HomeDashboardPage = () => {
     </section>
   );
 };
+
+export default HomeDashboardPage;

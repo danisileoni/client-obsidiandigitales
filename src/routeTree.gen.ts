@@ -13,7 +13,6 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as ShoppingCartIndexImport } from './routes/shopping-cart/index'
 import { Route as ProductIndexImport } from './routes/product/index'
 import { Route as ProductProductSlugImport } from './routes/product/$productSlug'
 import { Route as ShoppingCartPaymentIdOrderImport } from './routes/shopping-cart/payment/$idOrder'
@@ -35,6 +34,7 @@ const GeneralConditionsLazyImport = createFileRoute('/general-conditions')()
 const FaqLazyImport = createFileRoute('/faq')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
+const ShoppingCartIndexLazyImport = createFileRoute('/shopping-cart/')()
 const AuthRegisterLazyImport = createFileRoute('/auth/register')()
 const AuthLoginLazyImport = createFileRoute('/auth/login')()
 const AdminDashboardLoginLazyImport = createFileRoute(
@@ -77,10 +77,12 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const ShoppingCartIndexRoute = ShoppingCartIndexImport.update({
+const ShoppingCartIndexLazyRoute = ShoppingCartIndexLazyImport.update({
   path: '/shopping-cart/',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/shopping-cart/index.lazy').then((d) => d.Route),
+)
 
 const ProductIndexRoute = ProductIndexImport.update({
   path: '/product/',
@@ -244,7 +246,7 @@ declare module '@tanstack/react-router' {
       id: '/shopping-cart/'
       path: '/shopping-cart'
       fullPath: '/shopping-cart'
-      preLoaderRoute: typeof ShoppingCartIndexImport
+      preLoaderRoute: typeof ShoppingCartIndexLazyImport
       parentRoute: typeof rootRoute
     }
     '/shopping-cart/payment/$idOrder': {
@@ -340,7 +342,7 @@ export const routeTree = rootRoute.addChildren({
   AuthLoginLazyRoute,
   AuthRegisterLazyRoute,
   ProductIndexRoute,
-  ShoppingCartIndexRoute,
+  ShoppingCartIndexLazyRoute,
   ShoppingCartPaymentIdOrderRoute,
   AdminDashboardLoginLazyRoute,
   AdminDashboardPanelAccountsRoute,

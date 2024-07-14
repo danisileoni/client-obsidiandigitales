@@ -3,7 +3,7 @@ import { SkeletonBuy } from '@/components/user/SkeletonBuy';
 import { findOrderUser } from '@/services/order.service';
 import { useQuery } from '@tanstack/react-query';
 
-export const BuysUserPage = ({ userId }: { userId: string }) => {
+const BuysUserPage = ({ userId }: { userId: string }) => {
   const { data: orders, isLoading } = useQuery({
     queryKey: ['order-user', userId],
     queryFn: () => findOrderUser(userId),
@@ -54,3 +54,5 @@ export const BuysUserPage = ({ userId }: { userId: string }) => {
     </>
   );
 };
+
+export default BuysUserPage;

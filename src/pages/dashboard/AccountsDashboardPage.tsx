@@ -35,7 +35,7 @@ interface ProductsProps extends ItemsDashboardFilter {
   navigate: UseNavigateResult<'/admin/dashboard/panel/accounts'>;
 }
 
-export const AccountsDashboardPage = ({ page, navigate }: ProductsProps) => {
+const AccountsDashboardPage = ({ page, navigate }: ProductsProps) => {
   const limit = 10;
   const currentPage = Number(page);
   const offset = (currentPage - 1) * limit;
@@ -291,3 +291,5 @@ export const AccountsDashboardPage = ({ page, navigate }: ProductsProps) => {
     </section>
   );
 };
+
+export default AccountsDashboardPage;

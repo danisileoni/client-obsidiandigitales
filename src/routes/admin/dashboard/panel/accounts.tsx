@@ -1,7 +1,9 @@
-import { AccountsDashboardPage } from '@/pages/dashboard/AccountsDashboardPage';
+import { lazy } from 'react';
 import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
 import * as v from 'valibot';
-
+const AccountsDashboardPage = lazy(
+  () => import('@/pages/dashboard/AccountsDashboardPage'),
+);
 const ItemFilters = v.object({
   page: v.optional(v.string(), '1'),
 });

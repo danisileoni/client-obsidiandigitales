@@ -1,6 +1,9 @@
+import { lazy } from 'react';
 import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
 import * as v from 'valibot';
-import { DiscountsDashboardPage } from '../../../../pages/dashboard/DiscountsDashboardPage';
+const DiscountsDashboardPage = lazy(
+  () => import('../../../../pages/dashboard/DiscountsDashboardPage'),
+);
 
 const ItemFilters = v.object({
   page: v.optional(v.string(), '1'),

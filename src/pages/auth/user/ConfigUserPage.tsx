@@ -11,7 +11,7 @@ type ConfigUserProps = {
   id: string;
 };
 
-export const ConfigUserPage = ({ id }: ConfigUserProps) => {
+const ConfigUserPage = ({ id }: ConfigUserProps) => {
   const [currentOption, setCurrentOption] = useState('account');
 
   const { data } = useQuery({
@@ -86,3 +86,5 @@ export const ConfigUserPage = ({ id }: ConfigUserProps) => {
     </>
   );
 };
+
+export default ConfigUserPage;

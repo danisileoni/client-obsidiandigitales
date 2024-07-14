@@ -1,4 +1,7 @@
-import { HomeDashboardPage } from '@/pages/dashboard/HomeDashboardPage';
+import { lazy } from 'react';
+const HomeDashboardPage = lazy(
+  () => import('@/pages/dashboard/HomeDashboardPage'),
+);
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/admin/dashboard/panel/home')({
