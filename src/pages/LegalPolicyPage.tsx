@@ -18,10 +18,10 @@ export const LegalPolicyPage = () => {
                 <strong>Nombre del Responsable:</strong> QuaraStore
               </p>
               <p>
-                <strong>Teléfono:</strong> [Número de Teléfono]
+                <strong>Teléfono:</strong> +54 +54 351 7410781
               </p>
               <p>
-                <strong>Correo Electrónico:</strong> QuaraStore@gmail.com
+                <strong>Correo Electrónico:</strong> quarastorecontact@gmail.com
               </p>
             </div>
           </article>

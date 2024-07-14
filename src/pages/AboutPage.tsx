@@ -80,7 +80,7 @@ export const AboutPage = () => {
               </p>
               <p className="mt-4">Atentamente,</p>
               <p className="mt-4">
-                Fundadores: Arias Lautaro & Santiago Gonzalez Owners
+                Fundadores: Arias Lautaro & Gonzales Santiago
               </p>
               <p className="mt-4">Nombre de la Tienda: QuaraStore</p>
               <p className="mt-4">
