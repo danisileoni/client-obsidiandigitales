@@ -2,7 +2,7 @@ import { getOneUser } from '@/services/user.service';
 import { useQuery } from '@tanstack/react-query';
 import { Navbar } from '@/components/common/Navbar';
 import { AccountConfig } from '@/components/user/AccountConfig';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { PasswordConfig } from '@/components/user/PasswordConfig';
 import { HelpConfig } from '@/components/user/HelpConfig';
 import { Footer } from '@/components/common/Footer';

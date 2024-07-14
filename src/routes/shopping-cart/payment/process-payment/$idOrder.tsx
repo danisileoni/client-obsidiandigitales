@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 const ProcessPaymentPage = lazy(() => import('@/pages/ProcessPaymentPage'));
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
@@ -20,5 +20,9 @@ export const Route = createFileRoute(
 const ProcessPayment = () => {
   const { idOrder } = Route.useParams();
 
-  return <ProcessPaymentPage orderId={idOrder} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProcessPaymentPage orderId={idOrder} />
+    </Suspense>
+  );
 };

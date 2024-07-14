@@ -1,6 +1,7 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 const ProductPage = lazy(() => import('@/pages/products/ProductPage'));
 import { createFileRoute } from '@tanstack/react-router';
+import { ProductPageSkeleton } from '@/pages/products/ProductPageSkeleton';
 
 export const Route = createFileRoute('/product/$productSlug')({
   component: ProductParam,
@@ -9,5 +10,9 @@ export const Route = createFileRoute('/product/$productSlug')({
 function ProductParam() {
   const { productSlug } = Route.useParams();
 
-  return <ProductPage key={productSlug} param={productSlug} />;
+  return (
+    <Suspense fallback={<ProductPageSkeleton />}>
+      <ProductPage key={productSlug} param={productSlug} />
+    </Suspense>
+  );
 }

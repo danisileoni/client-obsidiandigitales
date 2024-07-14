@@ -89,7 +89,8 @@ const ProductsPage = ({
 
   const handleDeleteQueryParams = () => {
     navigate({
-      search: (prev) => ({ page: prev.page }),
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      search: (prev: { page: any }) => ({ page: prev.page }),
       replace: true,
     });
   };

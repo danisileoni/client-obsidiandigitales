@@ -1,6 +1,7 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 const PaymentPage = lazy(() => import('@/pages/PaymentPage'));
 import { createFileRoute, redirect } from '@tanstack/react-router';
+import { PaymentPageSkeleton } from '@/pages/PaymentPageSkeleton';
 
 export const Route = createFileRoute('/shopping-cart/payment/$idOrder')({
   beforeLoad: async ({ context }) => {
@@ -18,5 +19,9 @@ export const Route = createFileRoute('/shopping-cart/payment/$idOrder')({
 const PaymentParams = () => {
   const { idOrder } = Route.useParams();
 
-  return <PaymentPage id={idOrder} />;
+  return (
+    <Suspense fallback={<PaymentPageSkeleton />}>
+      <PaymentPage id={idOrder} />
+    </Suspense>
+  );
 };

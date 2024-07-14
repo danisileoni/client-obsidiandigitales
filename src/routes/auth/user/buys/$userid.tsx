@@ -1,6 +1,7 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 const BuysUserPage = lazy(() => import('@/pages/auth/user/BuysUserPage'));
 import { createFileRoute, redirect } from '@tanstack/react-router';
+import BuysUserPageSkeleton from '@/pages/auth/user/BuysUserPageSkeleton';
 
 export const Route = createFileRoute('/auth/user/buys/$userid')({
   beforeLoad: async ({ context }) => {
@@ -18,5 +19,9 @@ export const Route = createFileRoute('/auth/user/buys/$userid')({
 const BuyRouter = () => {
   const { userid } = Route.useParams();
 
-  return <BuysUserPage userId={userid} />;
+  return (
+    <Suspense fallback={<BuysUserPageSkeleton />}>
+      <BuysUserPage userId={userid} />
+    </Suspense>
+  );
 };

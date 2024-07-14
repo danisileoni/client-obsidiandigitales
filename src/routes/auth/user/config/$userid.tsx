@@ -1,6 +1,7 @@
-import { lazy } from 'react';
-const ConfigUserPage = lazy(() => import('@/pages/auth/user/ConfigUserPage'));
+import { lazy, Suspense } from 'react';
 import { createFileRoute, redirect } from '@tanstack/react-router';
+import { ConfigUserPageSkeleton } from '@/pages/auth/user/ConfigUserPageSkeleton';
+const ConfigUserPage = lazy(() => import('@/pages/auth/user/ConfigUserPage'));
 
 export const Route = createFileRoute('/auth/user/config/$userid')({
   beforeLoad: async ({ context }) => {
@@ -18,5 +19,9 @@ export const Route = createFileRoute('/auth/user/config/$userid')({
 const ConfigUserRoute = () => {
   const { userid } = Route.useParams();
 
-  return <ConfigUserPage id={userid} />;
+  return (
+    <Suspense fallback={<ConfigUserPageSkeleton />}>
+      <ConfigUserPage id={userid} />
+    </Suspense>
+  );
 };
