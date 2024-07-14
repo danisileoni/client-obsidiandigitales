@@ -1,7 +1,7 @@
-import { lazy } from 'react';
-const ProductsPage = lazy(() => import('@/pages/products/ProductsPage'));
+import { lazy, Suspense } from 'react';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import * as v from 'valibot';
+const ProductsPage = lazy(() => import('@/pages/products/ProductsPage'));
 
 const Category = v.union([
   v.literal('supervivencia'),
@@ -49,7 +49,7 @@ function Product() {
   const navigate = useNavigate({ from: Route.fullPath });
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <ProductsPage
         category={category}
         maxPrice={maxPrice}
@@ -60,6 +60,6 @@ function Product() {
         search={search}
         navigate={navigate}
       />
-    </>
+    </Suspense>
   );
 }
