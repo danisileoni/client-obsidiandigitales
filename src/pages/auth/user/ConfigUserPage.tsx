@@ -82,7 +82,6 @@ const ConfigUserPage = ({ id }: ConfigUserProps) => {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 };
