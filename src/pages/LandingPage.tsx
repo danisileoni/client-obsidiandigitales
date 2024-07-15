@@ -28,13 +28,11 @@ export const LandingPage = () => {
 
   return (
     <>
-      <head>
-        <title>QuaraStore | Tu Tienda de Juegos de Preferencia</title>
-        <meta
-          name="description"
-          content="Descubre las mejores ofertas y los últimos lanzamientos en videojuegos en QuaraStore. Tu tienda de juegos favorita con una amplia selección y grandes descuentos."
-        />
-      </head>
+      <title>QuaraStore | Tu Tienda de Juegos de Preferencia</title>
+      <meta
+        name="description"
+        content="Descubre las mejores ofertas y los últimos lanzamientos en videojuegos en QuaraStore. Tu tienda de juegos favorita con una amplia selección y grandes descuentos."
+      />
       <Navbar />
       <div>
         <div className="relative">

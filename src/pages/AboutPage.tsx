@@ -3,13 +3,11 @@ import { Navbar } from '@/components/common/Navbar';
 export const AboutPage = () => {
   return (
     <>
-      <head>
-        <title>Sobre Nosotros | QuaraStore</title>
-        <meta
-          name="description"
-          content="Conozca más sobre QuaraStore, su destino definitivo para adquirir los mejores juegos digitales. Ofrecemos una experiencia de compra sencilla, rápida y segura."
-        />
-      </head>
+      <title>Sobre Nosotros | QuaraStore</title>
+      <meta
+        name="description"
+        content="Conozca más sobre QuaraStore, su destino definitivo para adquirir los mejores juegos digitales. Ofrecemos una experiencia de compra sencilla, rápida y segura."
+      />
       <Navbar />
       <div className="flex flex-col w-full items-center bg-gray-100 min-h-screen py-10">
         <h1 className="text-5xl text-center mt-8 font-bold text-sky-600 underline mb-10">

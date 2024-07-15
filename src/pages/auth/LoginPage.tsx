@@ -49,13 +49,11 @@ export const LoginPage = () => {
 
   return (
     <>
-      <head>
-        <title>Iniciar Sesión | QuaraStore</title>
-        <meta
-          name="description"
-          content="Inicia sesión en QuaraStore para acceder a tu cuenta y disfrutar de nuestros servicios. Ingresa con tu usuario y contraseña o utiliza una plataforma externa como Google."
-        />
-      </head>
+      <title>Iniciar Sesión | QuaraStore</title>
+      <meta
+        name="description"
+        content="Inicia sesión en QuaraStore para acceder a tu cuenta y disfrutar de nuestros servicios. Ingresa con tu usuario y contraseña o utiliza una plataforma externa como Google."
+      />
       <section className="flex justify-center items-center min-h-screen bg-gray-100">
         <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg max-md:p-6 md:pr-10 max-w-4xl w-full">
           {showControls ? <BannerAuth /> : ''}

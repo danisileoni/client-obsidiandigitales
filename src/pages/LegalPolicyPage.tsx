@@ -3,13 +3,11 @@ import { Navbar } from '@/components/common/Navbar';
 export const LegalPolicyPage = () => {
   return (
     <>
-      <head>
-        <title>Información Legal | QuaraStore</title>
-        <meta
-          name="description"
-          content="Consulte nuestra información legal, incluyendo datos del responsable, propósito del sitio web, legislación aplicable, derechos de autor y contacto legal."
-        />
-      </head>
+      <title>Información Legal | QuaraStore</title>
+      <meta
+        name="description"
+        content="Consulte nuestra información legal, incluyendo datos del responsable, propósito del sitio web, legislación aplicable, derechos de autor y contacto legal."
+      />
       <Navbar />
       <div className="flex flex-col w-full items-center bg-gray-100 min-h-screen py-10">
         <h1 className="text-5xl text-center mt-8 font-bold text-sky-600 underline mb-10">

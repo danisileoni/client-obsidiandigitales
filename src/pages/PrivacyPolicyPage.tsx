@@ -3,13 +3,11 @@ import { Navbar } from '@/components/common/Navbar';
 export const PrivacyPolicyPage = () => {
   return (
     <>
-      <head>
-        <title>Políticas de Privacidad | QuaraStore</title>
-        <meta
-          name="description"
-          content="Consulte nuestras políticas de privacidad para conocer cómo recopilamos, usamos y protegemos su información personal en QuaraStore."
-        />
-      </head>
+      <title>Políticas de Privacidad | QuaraStore</title>
+      <meta
+        name="description"
+        content="Consulte nuestras políticas de privacidad para conocer cómo recopilamos, usamos y protegemos su información personal en QuaraStore."
+      />
       <Navbar />
       <div className="flex flex-col w-full items-center bg-gray-100 min-h-screen py-10">
         <h1 className="text-5xl text-center mt-8 font-bold text-sky-600 underline mb-10">
