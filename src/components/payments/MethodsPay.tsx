@@ -8,6 +8,7 @@ import { FormDataMercadoPago, PaypalLinks } from './type-payments';
 import { createPay } from '@/services/payment.service';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from '@tanstack/react-router';
+import { useFormatPrice } from '@/hooks/useFormatPrice';
 
 initMercadoPago(import.meta.env.VITE_MP_SECRET, {
   locale: 'es-AR',
@@ -20,6 +21,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { isAuthenticate, token } = useAuth();
   const navigate = useNavigate();
+  const { formatPrice } = useFormatPrice();
 
   const { data: order } = useQuery({
     queryKey: ['order'],
@@ -193,7 +195,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
             <p className="self-start font-bold text-sm">Resumen</p>
             <h2 className="text-2xl text-sky-600 flex gap-2 items-center font-bold">
               <span className="font-bold text-base text-black">Total:</span> $
-              {order?.total} ARS
+              {order?.total && formatPrice(+order?.total)} ARS
             </h2>
             <p className="self-start text-xs">
               Total de productos: {order?.details.length}

@@ -101,7 +101,7 @@ const ProductPage = ({ param }: ProductProps) => {
     }
 
     if (data?.account === 'Primary') {
-      if (foundProduct?.sale.salePrice) {
+      if (foundProduct?.sale.salePrimary) {
         return foundProduct.sale.salePrimary;
       }
       return foundProduct?.pricePrimary;
@@ -310,7 +310,7 @@ const ProductPage = ({ param }: ProductProps) => {
                     </p>
                     <p className="ml-2 mt-4">Precio final:</p>
                     <p className="text-2xl font-bold ml-2 text-gray-800 w-full">
-                      ${handleSelectPriceProduct(accountProduct)} ARS
+                      ${handleSelectPriceProduct(accountProduct)?.toLocaleString('es-ES')} ARS
                     </p>
                     <div className="gap-2 mb-1 mt-4 flex flex-col items-center">
                       <button

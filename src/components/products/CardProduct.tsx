@@ -103,7 +103,7 @@ export const CardProduct = ({ product }: CardProductProps) => {
         <div className="w-full flex flex-col items-start pb-1">
           <p className="text-xs text-gray-600 font-bold">DESDE</p>
           <p className="font-bold text-xl">
-            ${handleSearchMoreSmall(product.products)} ARS
+            ${handleSearchMoreSmall(product.products)?.toLocaleString('es-ES')} ARS
           </p>
         </div>
         <button

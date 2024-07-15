@@ -5,6 +5,7 @@ import { ToolTipAccount } from '@/components/tooltip/ToolTipAccount';
 import type { Product, Stock } from '@/services/types-services';
 import React, { useEffect, useState } from 'react';
 import { getStockProduct } from '@/services/account.service';
+import { useFormatPrice } from '@/hooks/useFormatPrice';
 
 interface InputRadio {
   id: string;
@@ -23,6 +24,7 @@ export const CardTargetPlatform = ({
   sendIdProduct,
 }: CardTargetPlatformProp) => {
   const [stock, setStock] = useState<Stock>();
+  const { formatPrice } = useFormatPrice();
 
   useEffect(() => {
     (async () => {
@@ -83,12 +85,18 @@ export const CardTargetPlatform = ({
                     <span
                       className={`${product.sale.salePrimary ? 'line-through text-gray-500' : ''} font-bold`}
                     >
-                      ${product.pricePrimary} ARS
+                      $
+                      {product.pricePrimary &&
+                        formatPrice(+product.pricePrimary)}{' '}
+                      ARS
                     </span>
                     {product.sale.salePrimary ? (
                       <>
                         <span className="pl-2 text-sky-700 font-bold">
-                          ${product.sale.salePrimary} ARS
+                          $
+                          {product.sale.salePrimary &&
+                            formatPrice(+product.sale.salePrimary)}{' '}
+                          ARS
                         </span>
                         <p className="ml-1 border border-rose-500 bg-rose-500 rounded-md font-bold text-xs flex items-center absolute translate-x-48 -translate-y-[3.6rem] text-black h-5 w-9 justify-center">
                           -{product.sale.sale}%
@@ -145,12 +153,18 @@ export const CardTargetPlatform = ({
                     <span
                       className={`${product.sale.saleSecondary ? 'line-through text-gray-500' : ''} font-bold`}
                     >
-                      ${product.priceSecondary} ARS
+                      $
+                      {product.priceSecondary &&
+                        formatPrice(+product.priceSecondary)}{' '}
+                      ARS
                     </span>
                     {product.sale.saleSecondary ? (
                       <>
                         <span className="pl-2 text-sky-700 font-bold">
-                          ${product.sale.saleSecondary} ARS
+                          $
+                          {product.sale.saleSecondary &&
+                            formatPrice(+product.sale.saleSecondary)}{' '}
+                          ARS
                         </span>
                         <span className="ml-1 border border-rose-500 bg-rose-500 rounded-md text-xs font-bold flex items-center absolute translate-x-48 -translate-y-[3.6rem] text-black h-5 w-9 justify-center">
                           -{product.sale.sale}%
@@ -221,12 +235,15 @@ export const CardTargetPlatform = ({
                 <span
                   className={`${product.sale.salePrice ? 'line-through text-gray-500' : ''} font-bold`}
                 >
-                  ${product.price} ARS
+                  ${product.price && formatPrice(+product.price)} ARS
                 </span>
                 {product.sale.salePrice ? (
                   <>
                     <span className="pl-2 text-sky-700 font-bold">
-                      ${product.sale.salePrice} ARS
+                      $
+                      {product.sale.salePrice &&
+                        formatPrice(+product.sale.salePrice)}{' '}
+                      ARS
                     </span>
                     <span className="ml-1 border font-bold border-rose-500 bg-rose-500 rounded-md text-xs flex items-center absolute translate-x-48 -translate-y-[3.6rem] text-black h-5 w-9 justify-center">
                       -{product.sale.sale}%

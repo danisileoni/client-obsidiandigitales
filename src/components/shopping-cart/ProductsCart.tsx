@@ -2,6 +2,7 @@ import { ProductCart } from '@/services/types-services';
 import { ProductCartStore, useShoppingCart } from '@/store/shoppingCart';
 import { TrashIcon } from '../icons/TrashIcon';
 import { ButtonCreateOrder } from './ButtonCreateOrder';
+import { useFormatPrice } from '@/hooks/useFormatPrice';
 
 interface ProductsCartProps {
   infoProducts: ProductCart[] | undefined;
@@ -14,6 +15,7 @@ export const ProductsCart = ({
 }: ProductsCartProps) => {
   let totalPrice: number = 0;
   const { removeFromCart } = useShoppingCart();
+  const { formatPrice } = useFormatPrice();
 
   if (!infoProducts.length) {
     return (
@@ -112,8 +114,8 @@ export const ProductsCart = ({
                             : ''}
                         </p>
                         <p className="text-sm text-gray-600">
-                          <span className="font-bold">Precio:</span> ${price}{' '}
-                          ARS
+                          <span className="font-bold">Precio:</span> $
+                          {formatPrice(+price)} ARS
                         </p>
                         <button
                           type="button"
@@ -132,7 +134,7 @@ export const ProductsCart = ({
                   <span className="text-black font-normal text-base">
                     Subtotal:
                   </span>{' '}
-                  ${subTotal} ARS
+                  ${formatPrice(subTotal)} ARS
                 </p>
               </div>
             </article>
@@ -145,7 +147,7 @@ export const ProductsCart = ({
             <p className="self-start font-bold text-sm">Resumen</p>
             <h2 className="text-2xl text-sky-600 flex gap-2 items-center font-bold">
               <span className="font-bold text-base text-black">Total:</span> $
-              {totalPrice} ARS
+              {formatPrice(totalPrice)} ARS
             </h2>
             <p className="self-start text-xs">
               Total de productos: {shoppingCart.length}
