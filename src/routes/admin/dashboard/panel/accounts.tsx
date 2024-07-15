@@ -17,7 +17,7 @@ export const Route = createFileRoute('/admin/dashboard/panel/accounts')({
     const isAuth = await isAuthenticateDashboard();
 
     if (!isAuth) {
-      redirect({ to: '/auth/login' });
+      throw redirect({ to: '/auth/login' });
     }
   },
   component: () => <AccountsDashboard />,

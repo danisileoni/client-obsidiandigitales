@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /admin/dashboard/login/
+Disallow: /admin/dashboard/panel/home/
+Disallow: /admin/dashboard/panel/products/
+Disallow: /admin/dashboard/panel/accounts/
+Disallow: /admin/dashboard/panel/discounts/
+Disallow: /admin/dashboard/panel/users/
+Disallow: /admin/dashboard/panel/payments/
+Disallow: /admin/dashboard/panel/payments/
+
+Allow: /
+
+Sitemap: https://obsidiandigitales.com/sitemap.xml

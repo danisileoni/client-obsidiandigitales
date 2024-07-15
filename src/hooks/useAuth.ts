@@ -64,6 +64,7 @@ export const useAuth = () => {
       }
     } catch (error) {
       console.error('Error during authentication:', error);
+      return false;
     }
 
     setIsAuth(false);

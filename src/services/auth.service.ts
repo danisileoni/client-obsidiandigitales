@@ -148,6 +148,7 @@ export const verifyTokensDashboard = async (
           'Content-Type': 'application/json',
           Authorization: `Bearer ${at}`,
         },
+        withCredentials: true,
       },
     );
 
