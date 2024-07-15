@@ -38,14 +38,11 @@ const ForgotPasswordPage = ({ token }: { token: string }) => {
         type: 'manual',
         message: (() => {
           if (error instanceof AxiosError) {
-            if (error.response?.data.message.includes('username')) {
-              return 'El usuario ya existe';
-            }
-            if (error.response?.data.message.includes('email')) {
-              return 'El email ya existe';
+            if (error.response?.data.message.includes('password')) {
+              return 'Hay algo mal en la contraseña';
             }
           }
-          return 'Error desconocido, por favor intente de nuevo';
+          return 'Error desconocido o expiracion de recuperacion';
         })(),
       });
     }

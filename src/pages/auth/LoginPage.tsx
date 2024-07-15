@@ -15,9 +15,6 @@ export const LoginPage = () => {
     formState: { errors },
     handleSubmit,
     clearErrors,
-    getValues,
-    setValue,
-    trigger,
   } = useForm<LoginInput>();
   const navigate = useNavigate();
   const { showControls } = useReSideWindows();
@@ -90,7 +87,10 @@ export const LoginPage = () => {
                 Ingresar
               </button>
               <div className="flex w-full justify-between mb-2">
-                <Link className="text-sky-700 underline">
+                <Link
+                  to="/auth/forgot-password/send"
+                  className="text-sky-700 underline"
+                >
                   ¿Olvidaste la contraseña?
                 </Link>
                 <Link to="/auth/register" className="text-sky-700 underline">

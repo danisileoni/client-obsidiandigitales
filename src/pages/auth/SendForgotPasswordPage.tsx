@@ -1,4 +1,3 @@
-import { useNavigate } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { BannerAuth } from '@/components/auth/BannerAuth';
 import { sendForgotPassword } from '@/services/auth.service';
@@ -73,7 +72,7 @@ const SendForgotPasswordPage = () => {
                 </p>
               )}
               {getValues('customMessage') !== '' && (
-                <p className="text-rose-500 text-sm mb-2">
+                <p className="text-green-600 text-sm mb-2">
                   {getValues('customMessage')}
                 </p>
               )}
