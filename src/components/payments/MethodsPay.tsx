@@ -69,7 +69,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
             body: JSON.stringify(formData),
           });
 
-          const paymentResult = await createPay(
+          await createPay(
             idOrder,
             {
               method: formData.payment_method_id,
