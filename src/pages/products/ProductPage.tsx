@@ -202,6 +202,8 @@ const ProductPage = ({ param }: ProductProps) => {
   return (
     <>
       <Navbar />
+      <title>{product?.title}</title>
+      <meta name="description" content={product?.description} />
       <article className="flex flex-col items-center justify-start max-lg:mt-5 md:flex-row md:justify-center md:items-start max-md:bg-white">
         <div>
           {showControls && (
@@ -310,7 +312,11 @@ const ProductPage = ({ param }: ProductProps) => {
                     </p>
                     <p className="ml-2 mt-4">Precio final:</p>
                     <p className="text-2xl font-bold ml-2 text-gray-800 w-full">
-                      ${handleSelectPriceProduct(accountProduct)?.toLocaleString('es-ES')} ARS
+                      $
+                      {handleSelectPriceProduct(accountProduct)?.toLocaleString(
+                        'es-ES',
+                      )}{' '}
+                      ARS
                     </p>
                     <div className="gap-2 mb-1 mt-4 flex flex-col items-center">
                       <button

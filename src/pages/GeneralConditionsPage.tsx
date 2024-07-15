@@ -3,6 +3,13 @@ import { Navbar } from '@/components/common/Navbar';
 export const GeneralConditionsPage = () => {
   return (
     <>
+      <head>
+        <title>Condiciones Generales | QuaraStore</title>
+        <meta
+          name="description"
+          content="Lea las condiciones generales de uso de nuestro sitio web y servicios en QuaraStore. Información sobre registro, compras, entregas, reembolsos y más."
+        />
+      </head>
       <Navbar />
       <div className="flex flex-col w-full items-center bg-gray-100 min-h-screen py-10">
         <h1 className="text-5xl text-center mt-8 font-bold text-sky-600 underline mb-10">
