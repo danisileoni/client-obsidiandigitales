@@ -10,7 +10,7 @@ export const useSocket = (orderId: string) => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const newSocket = io(import.meta.env.VITE_HOST_WEBHOOK, {
+    const newSocket = io(`${import.meta.env.VITE_HOST_WEBHOOK}/socket.io`, {
       path: 'process-order',
       query: { orderId },
       transports: ['websocket'],
