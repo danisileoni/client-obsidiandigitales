@@ -5,7 +5,6 @@ import { AccountConfig } from '@/components/user/AccountConfig';
 import { useState } from 'react';
 import { PasswordConfig } from '@/components/user/PasswordConfig';
 import { HelpConfig } from '@/components/user/HelpConfig';
-import { Footer } from '@/components/common/Footer';
 
 type ConfigUserProps = {
   id: string;

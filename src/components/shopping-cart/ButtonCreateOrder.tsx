@@ -73,6 +73,7 @@ export const ButtonCreateOrder = ({ shoppingCart }: ButtonCreateOrderProps) => {
       .filter((item) => item !== null);
 
     const isAuth = await isAuthenticate();
+    console.log(items);
 
     if (isAuth) {
       const order = await createOrders({ items });
