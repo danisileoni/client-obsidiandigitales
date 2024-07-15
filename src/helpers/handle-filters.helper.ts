@@ -1,11 +1,5 @@
 import type { UseNavigateResult } from '@tanstack/react-router';
 
-interface SearchParams {
-  category?: Category[];
-  platform?: Platform;
-  sale?: boolean;
-}
-
 type Platform = 'PlayStation 3' | 'Steam' | 'PlayStation 4' | 'PlayStation 5';
 export type Category =
   | 'supervivencia'

@@ -1,4 +1,4 @@
-import { Link, redirect, useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
 import { HomeDashboardIcon } from '../icons/HomeDashboardIcon';
 import { ProductsIcon } from '../icons/ProductsIcon';
 import { JoystickIcon } from '../icons/JoystickIcon';

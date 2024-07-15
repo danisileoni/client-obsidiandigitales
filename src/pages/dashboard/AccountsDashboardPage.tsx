@@ -1,5 +1,4 @@
 import { SideBar } from '@/components/dashboard/SideBar';
-import { DeleteIcon } from '@/components/icons/DeleteIcon';
 import { toast, Toaster } from 'sonner';
 import { PlusIcon } from '@/components/icons/PlusIcon';
 import { PaginationProducts } from '@/components/products/PaginationProducts';
@@ -27,7 +26,7 @@ import {
 import { PlatformValid } from '@/services/enum-services';
 import { getAllProducts } from '@/services/products.services';
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate, UseNavigateResult } from '@tanstack/react-router';
+import { UseNavigateResult } from '@tanstack/react-router';
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 

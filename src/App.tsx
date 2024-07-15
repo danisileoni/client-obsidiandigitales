@@ -1,7 +1,6 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { useAuth } from './hooks/useAuth';
 import { routeTree } from './routeTree.gen';
-import { Footer } from './components/common/Footer';
 
 const router = createRouter({
   routeTree,
