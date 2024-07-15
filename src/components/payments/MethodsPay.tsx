@@ -82,7 +82,10 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
             token,
           );
 
-          console.log('Payment result:', paymentResult);
+          navigate({
+            to: '/shopping-cart/payment/process-payment/$idOrder',
+            params: { idOrder },
+          });
         } catch (error) {
           throw 'an error has occurred';
         }
