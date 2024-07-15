@@ -9,7 +9,7 @@ import type { ItemFilters } from '@/routes/product';
 import { getAllProducts } from '@/services/products.services';
 import { useQuery } from '@tanstack/react-query';
 import { Link, type UseNavigateResult } from '@tanstack/react-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ProductsProps extends ItemFilters {
   navigate: UseNavigateResult<'/product'>;
@@ -55,6 +55,14 @@ const ProductsPage = ({
   const [inputMaxPrice, setInputMaxPrice] = useState<string | undefined>();
   const { showControls } = useReSideWindows();
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, [page]);
 
   const { data: products, isLoading } = useQuery({
     queryKey: [

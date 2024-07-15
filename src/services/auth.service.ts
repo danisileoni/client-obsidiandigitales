@@ -33,6 +33,43 @@ export const loginAuth = async (loginBody: LoginInput) => {
   return data;
 };
 
+export const forgotPassword = async (
+  token: string,
+  forgotBody: { password: string; confirmPassword: string },
+) => {
+  const { data, status } = await config.post(
+    `/auth/forgot-password/${token}`,
+    forgotBody,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
+    },
+  );
+
+  if (status !== 201) throw data;
+
+  return data;
+};
+
+export const sendForgotPassword = async (forgotBody: { email: string }) => {
+  const { data, status } = await config.post(
+    '/auth/send-forgot-password',
+    forgotBody,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
+    },
+  );
+
+  if (status !== 201) throw data;
+
+  return data;
+};
+
 export const loginAuthDashboard = async (loginBody: LoginDashboard) => {
   const { data, status } = await config.post(
     '/auth/login-dashboard',

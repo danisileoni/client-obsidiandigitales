@@ -16,6 +16,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as ProductIndexImport } from './routes/product/index'
 import { Route as ProductProductSlugImport } from './routes/product/$productSlug'
 import { Route as ShoppingCartPaymentIdOrderImport } from './routes/shopping-cart/payment/$idOrder'
+import { Route as AuthForgotPasswordTokenImport } from './routes/auth/forgot-password/$token'
 import { Route as ShoppingCartPaymentProcessPaymentIdOrderImport } from './routes/shopping-cart/payment/process-payment/$idOrder'
 import { Route as AuthUserConfigUseridImport } from './routes/auth/user/config/$userid'
 import { Route as AuthUserBuysUseridImport } from './routes/auth/user/buys/$userid'
@@ -37,6 +38,9 @@ const IndexLazyImport = createFileRoute('/')()
 const ShoppingCartIndexLazyImport = createFileRoute('/shopping-cart/')()
 const AuthRegisterLazyImport = createFileRoute('/auth/register')()
 const AuthLoginLazyImport = createFileRoute('/auth/login')()
+const AuthForgotPasswordSendLazyImport = createFileRoute(
+  '/auth/forgot-password/send',
+)()
 const AdminDashboardLoginLazyImport = createFileRoute(
   '/admin/dashboard/login',
 )()
@@ -104,6 +108,15 @@ const ProductProductSlugRoute = ProductProductSlugImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthForgotPasswordSendLazyRoute = AuthForgotPasswordSendLazyImport.update(
+  {
+    path: '/auth/forgot-password/send',
+    getParentRoute: () => rootRoute,
+  } as any,
+).lazy(() =>
+  import('./routes/auth/forgot-password/send.lazy').then((d) => d.Route),
+)
+
 const AdminDashboardLoginLazyRoute = AdminDashboardLoginLazyImport.update({
   path: '/admin/dashboard/login',
   getParentRoute: () => rootRoute,
@@ -117,6 +130,11 @@ const ShoppingCartPaymentIdOrderRoute = ShoppingCartPaymentIdOrderImport.update(
     getParentRoute: () => rootRoute,
   } as any,
 )
+
+const AuthForgotPasswordTokenRoute = AuthForgotPasswordTokenImport.update({
+  path: '/auth/forgot-password/$token',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ShoppingCartPaymentProcessPaymentIdOrderRoute =
   ShoppingCartPaymentProcessPaymentIdOrderImport.update({
@@ -249,6 +267,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShoppingCartIndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/auth/forgot-password/$token': {
+      id: '/auth/forgot-password/$token'
+      path: '/auth/forgot-password/$token'
+      fullPath: '/auth/forgot-password/$token'
+      preLoaderRoute: typeof AuthForgotPasswordTokenImport
+      parentRoute: typeof rootRoute
+    }
     '/shopping-cart/payment/$idOrder': {
       id: '/shopping-cart/payment/$idOrder'
       path: '/shopping-cart/payment/$idOrder'
@@ -261,6 +286,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/dashboard/login'
       fullPath: '/admin/dashboard/login'
       preLoaderRoute: typeof AdminDashboardLoginLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/forgot-password/send': {
+      id: '/auth/forgot-password/send'
+      path: '/auth/forgot-password/send'
+      fullPath: '/auth/forgot-password/send'
+      preLoaderRoute: typeof AuthForgotPasswordSendLazyImport
       parentRoute: typeof rootRoute
     }
     '/admin/dashboard/panel/accounts': {
@@ -343,8 +375,10 @@ export const routeTree = rootRoute.addChildren({
   AuthRegisterLazyRoute,
   ProductIndexRoute,
   ShoppingCartIndexLazyRoute,
+  AuthForgotPasswordTokenRoute,
   ShoppingCartPaymentIdOrderRoute,
   AdminDashboardLoginLazyRoute,
+  AuthForgotPasswordSendLazyRoute,
   AdminDashboardPanelAccountsRoute,
   AdminDashboardPanelDiscountsRoute,
   AdminDashboardPanelHomeRoute,
