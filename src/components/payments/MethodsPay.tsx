@@ -7,7 +7,7 @@ import { VisaMasterCompleteIcon } from '../icons/VisaMasterCompleteIcon';
 import { PaypalLinks } from './type-payments';
 import { createPay } from '@/services/payment.service';
 import { useAuth } from '@/hooks/useAuth';
-import { useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
 import { useFormatPrice } from '@/hooks/useFormatPrice';
 import {
   ICardPaymentBrickPayer,
@@ -199,7 +199,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
           </div>
         </fieldset>
       </section>
-      <section className="w-full flex flex-col items-center justify-center h-[8.5rem] lg:w-[280px] p-2 rounded-lg border-sky-500 bg-white shadow-lg">
+      <section className="w-full flex flex-col items-center justify-center h-[18rem] lg:w-[280px] p-2 rounded-lg border-sky-500 bg-white shadow-lg">
         <div className="w-full flex flex-col items-center rounded-sm justify-center">
           <div>
             <p className="self-start font-bold text-sm">Resumen</p>
@@ -234,6 +234,26 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
               </div>
             )}
           </button>
+          <div className="p-2">
+            Una vez que das click en el boton de comprar estas aceptando todos
+            los terminos:{' '}
+            <Link to="/general-conditions" className="text-sky-600">
+              Terminos y condiciones
+            </Link>
+            ,{' '}
+            <Link to="/legal-policy" className="text-sky-600">
+              Politicas legales
+            </Link>
+            ,{' '}
+            <Link to="/privacy-policy" className="text-sky-600">
+              Politicas de privacidad
+            </Link>{' '}
+            y{' '}
+            <Link to="/" className="text-sky-600">
+              Politicas de privacidad
+            </Link>
+            .
+          </div>
         </div>
       </section>
     </>
