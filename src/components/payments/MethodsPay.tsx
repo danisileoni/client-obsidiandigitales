@@ -4,11 +4,15 @@ import { useQuery } from '@tanstack/react-query';
 import { findOrder } from '@/services/order.service';
 import { PaypalCompleteIcon } from '../icons/PaypalCompleteIcon';
 import { VisaMasterCompleteIcon } from '../icons/VisaMasterCompleteIcon';
-import { FormDataMercadoPago, PaypalLinks } from './type-payments';
+import { PaypalLinks } from './type-payments';
 import { createPay } from '@/services/payment.service';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from '@tanstack/react-router';
 import { useFormatPrice } from '@/hooks/useFormatPrice';
+import {
+  ICardPaymentBrickPayer,
+  ICardPaymentFormData,
+} from '@mercadopago/sdk-react/bricks/cardPayment/type';
 
 initMercadoPago(import.meta.env.VITE_MP_SECRET, {
   locale: 'es-AR',
@@ -50,44 +54,38 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
     }
   };
 
-  const createPayment = async () => {
+  const createPayment = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     setIsLoading(true);
     try {
       if (payment === 'mercadopago') {
-        let formData: FormDataMercadoPago;
-
-        try {
-          formData =
-            await // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-            (window as any).cardPaymentBrickController.getFormData();
-
-          await fetch('/process_payment', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-          });
-
-          await createPay(
-            idOrder,
-            {
-              method: formData.payment_method_id,
-              email: formData.payer.email,
-              paymentGateway: 'mercadopago',
-              numbers: formData.payer.identification.number,
-              type: formData.payer.identification.type,
-              token: formData.token,
-            },
-            token,
-          );
-
-          navigate({
-            to: '/shopping-cart/payment/process-payment/$idOrder',
-            params: { idOrder },
-          });
-        } catch (error) {
-          throw 'an error has occurred';
+        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+        if ((window as any).cardPaymentBrickController) {
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          (window as any).cardPaymentBrickController
+            .getFormData()
+            .then((formData: ICardPaymentFormData<ICardPaymentBrickPayer>) => {
+              if (formData.payer.identification) {
+                createPay(
+                  idOrder,
+                  {
+                    method: formData.payment_method_id,
+                    email: formData.payer.email,
+                    paymentGateway: 'mercadopago',
+                    numbers: formData.payer.identification.number,
+                    type: formData.payer.identification.type,
+                    token: formData.token,
+                  },
+                  token,
+                );
+              }
+              navigate({
+                to: '/shopping-cart/payment/process-payment/$idOrder',
+                params: { idOrder },
+              });
+            });
+        } else {
+          console.error('cardPaymentBrickController is not available');
         }
       }
       if (payment === 'paypal') {
@@ -98,19 +96,17 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
           },
           token,
         );
-
         if (paymentResult) {
           const link = paymentResult.links.find(
             (link) => link.rel === 'approve',
           )?.href;
-
           if (link) {
             window.location.href = link;
           }
         }
       }
     } catch (error) {
-      console.error(error);
+      console.error('Error during payment creation:', error);
     } finally {
       setIsLoading(false);
     }
@@ -156,9 +152,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
             className={`w-[450px] max-md:w-[310px] ${openCardPay ? '' : 'hidden'}`}
           >
             <CardPayment
-              onSubmit={async (): Promise<void> => {
-                'a';
-              }}
+              onSubmit={async (formData) => console.log(formData)}
               customization={{
                 visual: { hidePaymentButton: true, hideFormTitle: true },
               }}
