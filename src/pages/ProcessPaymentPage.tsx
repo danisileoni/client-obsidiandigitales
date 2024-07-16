@@ -47,7 +47,7 @@ const ProcessPaymentPage = ({ orderId }: { orderId: string }) => {
         complete: true,
         paidTrue: false,
       });
-      setMessage('Pago authorizado y completado');
+      setMessage('Pago autorizado y completado');
     }
     if (notification?.message === 'Payment cancel') {
       removeAllFromCart();
