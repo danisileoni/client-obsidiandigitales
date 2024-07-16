@@ -23,6 +23,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
   const [openCardPay, setOpenCardPay] = useState(false);
   const [disableButton, setDisableButton] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorPay, setErrorPay] = useState<string>();
   const { isAuthenticate, token } = useAuth();
   const navigate = useNavigate();
   const { formatPrice } = useFormatPrice();
@@ -77,12 +78,19 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
                     token: formData.token,
                   },
                   token,
-                );
+                ).catch(() => {
+                  setErrorPay('A habido un error al crear el pago');
+                });
               }
               navigate({
                 to: '/shopping-cart/payment/process-payment/$idOrder',
                 params: { idOrder },
               });
+            })
+            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+            .catch((error: any) => {
+              console.log(error);
+              setErrorPay('A habido un error al crear el pago o en sus datos');
             });
         } else {
           console.error('cardPaymentBrickController is not available');
@@ -154,6 +162,11 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
             <CardPayment
               onSubmit={async (formData) => console.log(formData)}
               customization={{
+                paymentMethods: {
+                  types: {
+                    excluded: ['credit_card'],
+                  },
+                },
                 visual: { hidePaymentButton: true, hideFormTitle: true },
               }}
               initialization={{
