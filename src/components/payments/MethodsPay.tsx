@@ -238,7 +238,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
             Una vez que das click en el boton de comprar estas aceptando todos
             los terminos:{' '}
             <Link to="/general-conditions" className="text-sky-600">
-              Terminos y condiciones
+              Condiciones generales
             </Link>
             ,{' '}
             <Link to="/legal-policy" className="text-sky-600">

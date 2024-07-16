@@ -9,7 +9,7 @@ const PaymentPage = ({ id }: { id: string }) => {
         <Navbar />
         <BreadcrumbsPay position={{ order: true, pay: false, finish: false }} />
         <section className="flex flex-col items-center mb-20">
-          <h3>Pago</h3>
+          <h3 className="text-2xl font-bold mb-5 mt-2">Pago</h3>
           <div className="flex max-md:flex-col max-md:gap-y-5 gap-x-10">
             <MethodsPay idOrder={id} />
           </div>
