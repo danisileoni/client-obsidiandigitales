@@ -174,7 +174,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
               }}
             />
           </div>
-          <div
+          {/* <div
             className="bg-white shadow-md hover:bg-gray-100 transition-colors duration-300 cursor-pointer flex h-16 p-2 pr-3 rounded-md justify-between items-center"
             onClick={() => handleDivClick('paypal')}
             tabIndex={0}
@@ -196,7 +196,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
               </label>
             </div>
             <PaypalCompleteIcon />
-          </div>
+          </div> */}
         </fieldset>
       </section>
       <section className="w-full flex flex-col items-center justify-center h-[18rem] lg:w-[280px] p-2 rounded-lg border-sky-500 bg-white shadow-lg">
