@@ -199,63 +199,68 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
           </div> */}
         </fieldset>
       </section>
-      <section className="w-full flex flex-col items-center justify-center h-[18rem] lg:w-[280px] p-2 rounded-lg border-sky-500 bg-white shadow-lg">
-        <div className="w-full flex flex-col items-center rounded-sm justify-center">
-          <div>
-            <p className="self-start font-bold text-sm">Resumen</p>
-            <h2 className="text-2xl text-sky-600 flex gap-2 items-center font-bold">
-              <span className="font-bold text-base text-black">Total:</span> $
-              {order?.total && formatPrice(+order?.total)} ARS
-            </h2>
-            <p className="self-start text-xs">
-              Total de productos: {order?.details.length}
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={createPayment}
-            disabled={disableButton || isLoading}
-            className={`${
-              disableButton || isLoading
-                ? 'bg-gray-400'
-                : 'bg-sky-500 hover:bg-sky-600'
-            } transition-colors duration-300 max-w-60 min-w-60 max-h-8 min-h-8 flex items-center justify-center text-white pr-[6rem] p-1 pl-[6rem] rounded-sm mt-2`}
-          >
-            {!isLoading ? (
-              'Comprar'
-            ) : (
-              <div className="flex flex-col text-white scale-[0.2] items-center justify-center">
-                <div className="lds-ring">
-                  <div />
-                  <div />
-                  <div />
-                  <div />
+      <div>
+        <section className="w-full flex flex-col items-center justify-center h-[18rem] lg:w-[280px] p-2 rounded-lg border-sky-500 bg-white shadow-lg">
+          <div className="w-full flex flex-col items-center rounded-sm justify-center">
+            <div>
+              <p className="self-start font-bold text-sm">Resumen</p>
+              <h2 className="text-2xl text-sky-600 flex gap-2 items-center font-bold">
+                <span className="font-bold text-base text-black">Total:</span> $
+                {order?.total && formatPrice(+order?.total)} ARS
+              </h2>
+              <p className="self-start text-xs">
+                Total de productos: {order?.details.length}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={createPayment}
+              disabled={disableButton || isLoading}
+              className={`${
+                disableButton || isLoading
+                  ? 'bg-gray-400'
+                  : 'bg-sky-500 hover:bg-sky-600'
+              } transition-colors duration-300 max-w-60 min-w-60 max-h-8 min-h-8 flex items-center justify-center text-white pr-[6rem] p-1 pl-[6rem] rounded-sm mt-2`}
+            >
+              {!isLoading ? (
+                'Comprar'
+              ) : (
+                <div className="flex flex-col text-white scale-[0.2] items-center justify-center">
+                  <div className="lds-ring">
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                  </div>
                 </div>
-              </div>
-            )}
-          </button>
-          <div className="p-2">
-            Una vez que das click en el boton de comprar estas aceptando todos
-            los terminos:{' '}
-            <Link to="/general-conditions" className="text-sky-600">
-              Condiciones generales
-            </Link>
-            ,{' '}
-            <Link to="/legal-policy" className="text-sky-600">
-              Politicas legales
-            </Link>
-            ,{' '}
-            <Link to="/privacy-policy" className="text-sky-600">
-              Politicas de privacidad
-            </Link>{' '}
-            y{' '}
-            <Link to="/" className="text-sky-600">
-              Politicas de privacidad
-            </Link>
-            .
+              )}
+            </button>
+            <div className="p-2">
+              Una vez que das click en el boton de comprar estas aceptando todos
+              los terminos:{' '}
+              <Link to="/general-conditions" className="text-sky-600">
+                Condiciones generales
+              </Link>
+              ,{' '}
+              <Link to="/legal-policy" className="text-sky-600">
+                Politicas legales
+              </Link>
+              ,{' '}
+              <Link to="/privacy-policy" className="text-sky-600">
+                Politicas de privacidad
+              </Link>{' '}
+              y{' '}
+              <Link to="/" className="text-sky-600">
+                Politicas de privacidad
+              </Link>
+              .
+            </div>
           </div>
+        </section>
+        <div>
+          <p className="text-rose-500">{errorPay}</p>
         </div>
-      </section>
+      </div>
     </>
   );
 };
