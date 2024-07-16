@@ -2,7 +2,7 @@ import { initMercadoPago, CardPayment } from '@mercadopago/sdk-react';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { findOrder } from '@/services/order.service';
-import { PaypalCompleteIcon } from '../icons/PaypalCompleteIcon';
+// import { PaypalCompleteIcon } from '../icons/PaypalCompleteIcon';
 import { VisaMasterCompleteIcon } from '../icons/VisaMasterCompleteIcon';
 import { PaypalLinks } from './type-payments';
 import { createPay } from '@/services/payment.service';
@@ -88,8 +88,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
               });
             })
             // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-            .catch((error: any) => {
-              console.log(error);
+            .catch(() => {
               setErrorPay('A habido un error al crear el pago o en sus datos');
             });
         } else {

@@ -52,8 +52,6 @@ export const getTotalByMonth = async (): Promise<
 
   if (status !== 200) throw data;
 
-  console.log(data);
-
   return data;
 };
 
@@ -66,8 +64,6 @@ export const getCountOrderPaid = async (): Promise<
   const { data, status } = await config.get('/orders/count-order-paid');
 
   if (status !== 200) throw data;
-
-  console.log(data);
 
   return data;
 };

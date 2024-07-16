@@ -266,7 +266,6 @@ const ProductsDashboardPage = ({ page, navigate }: ProductsProps) => {
         }
       }
     } catch (error) {
-      console.log(error);
       toast.error('Ha ocurrido un error al crear el producto');
     }
   };

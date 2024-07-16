@@ -35,10 +35,6 @@ export const CardTargetPlatform = ({
 
   const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const [number, text] = e.target.value.split('|');
-    console.log({
-      number,
-      text,
-    });
 
     if (sendIdProduct) {
       if (text === 'Primary') {

@@ -23,11 +23,6 @@ export const LoginPage = () => {
     try {
       const { password, username } = data;
 
-      console.log({
-        password,
-        username,
-      });
-
       await loginAuth({ password, username });
       navigate({ to: '/' });
     } catch (error) {
