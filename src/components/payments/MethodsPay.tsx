@@ -162,9 +162,8 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
               onSubmit={async (formData) => console.log(formData)}
               customization={{
                 paymentMethods: {
-                  types: {
-                    excluded: ['credit_card'],
-                  },
+                  minInstallments: 1,
+                  maxInstallments: 1,
                 },
                 visual: { hidePaymentButton: true, hideFormTitle: true },
               }}
