@@ -1,5 +1,5 @@
 import { initMercadoPago, CardPayment } from '@mercadopago/sdk-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { findOrder } from '@/services/order.service';
 // import { PaypalCompleteIcon } from '../icons/PaypalCompleteIcon';
@@ -24,9 +24,18 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
   const [disableButton, setDisableButton] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [errorPay, setErrorPay] = useState<string>();
+  const [isActive, setIsActive] = useState<boolean>(false);
   const { isAuthenticate, token } = useAuth();
   const navigate = useNavigate();
   const { formatPrice } = useFormatPrice();
+
+  useEffect(() => {
+    const idTimeout = setTimeout(() => {
+      setIsActive(true);
+    }, 5000);
+
+    return () => clearTimeout(idTimeout);
+  }, []);
 
   const { data: order } = useQuery({
     queryKey: ['order'],
@@ -35,7 +44,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
 
   const handleDivClick = (id: string) => {
     const radioElement = document.getElementById(id) as HTMLInputElement;
-    if (radioElement) {
+    if (radioElement && isActive) {
       radioElement.checked = true;
       handleChangePayment(radioElement.value);
       setDisableButton(false);
@@ -124,7 +133,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
       <section className="max-md:flex max-md:flex-col">
         <fieldset className="flex  md:min-w-[450px] flex-col gap-y-2">
           <div
-            className="bg-white shadow-md  hover:bg-gray-100 transition-colors duration-300 flex cursor-pointer h-16 p-2 pr-3 rounded-md justify-between items-center"
+            className={`bg-white ${isActive ? '' : 'animate-pulse duration-1000'} shadow-md  hover:bg-gray-100 transition-colors duration-300 flex cursor-pointer h-16 p-2 pr-3 rounded-md justify-between items-center`}
             onClick={() => handleDivClick('debit-credit')}
             tabIndex={0}
             role="radio"
@@ -138,6 +147,7 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
                 className="cursor-pointer mr-2"
                 onChange={() => setPayment('mercadopago')}
                 id="debit-credit"
+                disabled={!isActive}
                 checked={payment === 'mercadopago'}
               />
               <div>
@@ -199,7 +209,9 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
       </section>
       <div>
         <section className="w-full flex flex-col items-center justify-center h-[18rem] lg:w-[280px] p-2 rounded-lg border-sky-500 bg-white shadow-lg">
-          <div className="w-full flex flex-col items-center rounded-sm justify-center">
+          <div
+            className={`w-full flex flex-col ${isActive ? '' : 'animate-pulse duration-1000'} items-center rounded-sm justify-center`}
+          >
             <div>
               <p className="self-start font-bold text-sm">Resumen</p>
               <h2 className="text-2xl text-sky-600 flex gap-2 items-center font-bold">

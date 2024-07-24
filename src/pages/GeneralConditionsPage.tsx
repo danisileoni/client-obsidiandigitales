@@ -104,9 +104,8 @@ export const GeneralConditionsPage = () => {
                 Todo el contenido de nuestro sitio web, incluyendo pero no
                 limitado a textos, gráficos, logotipos, imágenes, clips de
                 audio, video y software, es propiedad de QuaraStore o sus
-                proveedores de contenido, exceptuando el código de la página que
-                es propiedad de Daniele Armando Sileoni y está protegido por
-                leyes de propiedad intelectual.
+                proveedores de contenido está protegido por leyes de propiedad
+                intelectual.
               </p>
             </div>
           </article>
