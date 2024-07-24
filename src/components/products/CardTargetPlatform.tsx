@@ -62,7 +62,7 @@ export const CardTargetPlatform = ({
         if (product.priceSecondary) {
           return (
             <React.Fragment key={product.id}>
-              <div className="shadow-md hover:shadow-sky-500 transition-shadow duration-500 cursor-pointer border pl-2 w-[250px] border-sky-500 rounded-sm flex">
+              <div className="shadow-md hover:shadow-sky-500 transition-shadow duration-500 cursor-pointer border pl-2 md:w-[250px] border-sky-500 rounded-sm flex">
                 <input
                   type="radio"
                   id={`${product.platform.id}|Primary`}
@@ -94,7 +94,7 @@ export const CardTargetPlatform = ({
                             formatPrice(+product.sale.salePrimary)}{' '}
                           ARS
                         </span>
-                        <p className="ml-1 border border-rose-500 bg-rose-500 rounded-md font-bold text-xs flex items-center absolute translate-x-48 -translate-y-[3.6rem] text-black h-5 w-9 justify-center">
+                        <p className="ml-1 border border-rose-500 bg-rose-500 rounded-md font-bold text-xs flex items-center absolute md:translate-x-48 -translate-y-[3.6rem] translate-x-56 xs:translate-x-[290px]  text-black h-5 w-9 justify-center">
                           -{product.sale.sale}%
                         </p>
                       </>
@@ -130,7 +130,7 @@ export const CardTargetPlatform = ({
                   </div>
                 </label>
               </div>
-              <div className="shadow-md hover:shadow-sky-500 transition-shadow duration-500 cursor-pointer border pl-2 w-[250px] border-sky-500 rounded-sm flex">
+              <div className="shadow-md hover:shadow-sky-500 transition-shadow duration-500 cursor-pointer border pl-2 md:w-[250px] border-sky-500 rounded-sm flex">
                 <input
                   type="radio"
                   id={`${product.platform.id}|Secondary`}
@@ -162,7 +162,7 @@ export const CardTargetPlatform = ({
                             formatPrice(+product.sale.saleSecondary)}{' '}
                           ARS
                         </span>
-                        <span className="ml-1 border border-rose-500 bg-rose-500 rounded-md text-xs font-bold flex items-center absolute translate-x-48 -translate-y-[3.6rem] text-black h-5 w-9 justify-center">
+                        <span className="ml-1 border border-rose-500 bg-rose-500 rounded-md text-xs font-bold flex items-center absolute md:translate-x-48 -translate-y-[3.6rem] translate-x-56 xs:translate-x-[290px]  text-black h-5 w-9 justify-center">
                           -{product.sale.sale}%
                         </span>
                       </>
@@ -205,7 +205,7 @@ export const CardTargetPlatform = ({
         return (
           <div
             key={product.platform.id}
-            className="shadow-md mr-1 hover:shadow-sky-500 transition-shadow duration-500 cursor-pointer border pl-2 w-[250px] h-fit  border-sky-500 rounded-sm flex"
+            className="shadow-md mr-1 hover:shadow-sky-500 transition-shadow duration-500 cursor-pointer border pl-2 md:w-[250px] h-fit  border-sky-500 rounded-sm flex"
           >
             <input
               type="radio"
@@ -241,7 +241,7 @@ export const CardTargetPlatform = ({
                         formatPrice(+product.sale.salePrice)}{' '}
                       ARS
                     </span>
-                    <span className="ml-1 border font-bold border-rose-500 bg-rose-500 rounded-md text-xs flex items-center absolute translate-x-48 -translate-y-[3.6rem] text-black h-5 w-9 justify-center">
+                    <span className="ml-1 border font-bold border-rose-500 bg-rose-500 rounded-md text-xs flex items-center absolute md:translate-x-48 -translate-y-[3.6rem] translate-x-56 xs:translate-x-[290px]  text-black h-5 w-9 justify-center">
                       -{product.sale.sale}%
                     </span>
                   </>

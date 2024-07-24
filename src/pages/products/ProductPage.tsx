@@ -204,7 +204,7 @@ const ProductPage = ({ param }: ProductProps) => {
       <Navbar />
       <title>{product?.title}</title>
       <meta name="description" content={product?.description} />
-      <article className="flex flex-col items-center justify-start max-lg:mt-5 md:flex-row md:justify-center md:items-start max-md:bg-white">
+      <article className="flex flex-col justify-start max-lg:mt-5 md:flex-row md:justify-center md:items-start max-md:bg-white">
         <div>
           {showControls && (
             <div className=" flex gap-1 flex-row mt-7 items-center">
@@ -251,7 +251,7 @@ const ProductPage = ({ param }: ProductProps) => {
               </CarouselContent>
             </Carousel>
             <div className="md:pl-6 max-lg:flex-col max-md:items-center item flex max-md:w-full">
-              <div>
+              <div className="max-md:w-full">
                 <h2 className=" max-w-[520px] overflow-hidden text-start text-xl max-md:w-full md:text-3xl font-semibold">
                   {product?.title}
                 </h2>
@@ -286,8 +286,8 @@ const ProductPage = ({ param }: ProductProps) => {
                   </form>
                 </div>
               </div>
-              <div className="ml-0 mt-2 lg:ml-5 lg:mt-0 max-lg:w-64 ">
-                <div className="flex flex-col max-md:items-center">
+              <div className="ml-0 mt-2 lg:ml-5 lg:mt-0 max-md:w-full max-lg:w-64 ">
+                <div className="flex max-md:w-full flex-col max-md:items-center">
                   <p className="text-xs font-bold mb-1">
                     ¡Compártelo con alguien a quien creas podría <br />{' '}
                     gustarle!
@@ -300,7 +300,7 @@ const ProductPage = ({ param }: ProductProps) => {
                       );
                       setCopyElement(true);
                     }}
-                    className={` ${copyElement ? 'bg-sky-500 text-black' : ''} text-sm flex border border-sky-500 w-52 lg:w-full justify-center items-center shadow hover:shadow-sky-500 transition-shadow duration-500 gap-2`}
+                    className={` ${copyElement ? 'bg-sky-500 text-black' : ''} text-sm flex border border-sky-500 w-full lg:w-full justify-center items-center shadow hover:shadow-sky-500 transition-shadow duration-500 gap-2`}
                   >
                     {copyElement ? 'Copiado' : 'Compartir'} <ShareIcon />
                   </button>
@@ -349,8 +349,8 @@ const ProductPage = ({ param }: ProductProps) => {
             </div>
           </div>
           <div className="w-full pb-8 bg-white rounded-b-md max-md:flex max-lg:items-center max-lg:flex-col max-md:items-center flex flex-col">
-            <div>
-              <div className="lg:pb-4 max-md:flex-col max-md:p-5 max-lg:p-3 lg:pl-6 lg:pr-6 lg:ml-8 justify-between lg:mr-8 bg-sky-500 rounded-xl flex shadow-md shadow-sky-900">
+            <div className="max-md:w-full max-md:flex max-md:flex-col max-md:items-center">
+              <div className="lg:pb-4 max-md:flex-col max-lg:p-3 lg:pl-6 lg:pr-6 lg:ml-8 justify-between max-md:w-[90%] lg:mr-8 bg-sky-500 rounded-xl flex shadow-md shadow-sky-900">
                 <div className="flex flex-col items-center">
                   <WarrantyIcon />
                   <p className="font-bold text-white">Garantia permanente.</p>
@@ -373,9 +373,9 @@ const ProductPage = ({ param }: ProductProps) => {
                 </div>
               </div>
             </div>
-            <div className="mt-5 ml-8 flex flex-col max-lg:ml-0 max-md:ml-0">
+            <div className="mt-5 ml-8 flex max-md:items-center flex-col max-lg:ml-0 max-md:ml-0">
               <p className="text-lg font-bold">Descripcion:</p>
-              <div className="whitespace-pre-line bg-gray-100 max-md:max-w-64 max-lg:max-w-xl max-w-[1057px] p-2 rounded-md">
+              <div className="whitespace-pre-line bg-gray-100 max-md:max-w-[90%] max-lg:max-w-xl max-w-[1057px] p-2 rounded-md">
                 <p>{product?.description}</p>
               </div>
             </div>
