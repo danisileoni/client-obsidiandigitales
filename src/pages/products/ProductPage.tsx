@@ -232,7 +232,7 @@ const ProductPage = ({ param }: ProductProps) => {
               plugins={[plugin.current]}
               onMouseEnter={plugin.current.stop}
               onMouseLeave={plugin.current.reset}
-              className="shadow-md shadow-gray-300 rounded-md bg-gray-300 h-[350px] w-[250px] max-xs:h-[350px] max-xs:w-[300px]"
+              className="shadow-md shadow-gray-300 rounded-md bg-gray-300 xs:h-[400px] h-[350px] xs:w-[400px] w-[300px]"
             >
               <CarouselContent>
                 {product?.productImages.map((image) => {
@@ -241,7 +241,7 @@ const ProductPage = ({ param }: ProductProps) => {
                       <picture>
                         <img
                           src={image}
-                          className="object-cover rounded-md h-[350px] w-[300px]"
+                          className="object-cover rounded-md xs:h-[400px] h-[350px] xs:w-[400px] w-[300px]"
                           alt={product.title}
                         />
                       </picture>
