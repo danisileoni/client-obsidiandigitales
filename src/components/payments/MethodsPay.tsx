@@ -130,10 +130,14 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
 
   return (
     <>
-      <section className="max-md:flex max-md:flex-col">
+      <section
+        className={`max-md:flex ${isActive ? '' : 'animate-pulse duration-1000'} max-md:flex-col`}
+      >
         <fieldset className="flex  md:min-w-[450px] flex-col gap-y-2">
           <div
-            className={`bg-white ${isActive ? '' : 'animate-pulse duration-1000'} shadow-md  hover:bg-gray-100 transition-colors duration-300 flex cursor-pointer h-16 p-2 pr-3 rounded-md justify-between items-center`}
+            className={
+              'bg-white shadow-md  hover:bg-gray-100 transition-colors duration-300 flex cursor-pointer h-16 p-2 pr-3 rounded-md justify-between items-center'
+            }
             onClick={() => handleDivClick('debit-credit')}
             tabIndex={0}
             role="radio"
@@ -207,10 +211,12 @@ export const MethodsPay = ({ idOrder }: { idOrder: string }) => {
           </div> */}
         </fieldset>
       </section>
-      <div>
+      <div className={`${isActive ? '' : 'animate-pulse duration-1000'}`}>
         <section className="w-full flex flex-col items-center justify-center h-[18rem] lg:w-[280px] p-2 rounded-lg border-sky-500 bg-white shadow-lg">
           <div
-            className={`w-full flex flex-col ${isActive ? '' : 'animate-pulse duration-1000'} items-center rounded-sm justify-center`}
+            className={
+              'w-full flex flex-col items-center rounded-sm justify-center'
+            }
           >
             <div>
               <p className="self-start font-bold text-sm">Resumen</p>
