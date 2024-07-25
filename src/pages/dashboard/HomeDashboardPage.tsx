@@ -24,6 +24,7 @@ import {
   getTotalByMonth,
   getTotalProceeds,
 } from '@/services/order.service';
+import { useEffect, useState } from 'react';
 
 const HomeDashboardPage = () => {
   const { data: countAccounts } = useQuery({
@@ -100,6 +101,32 @@ const HomeDashboardPage = () => {
       color: 'hsl(var(--chart-4))',
     },
   } satisfies ChartConfig;
+
+  const [maintenanceDays, setMaintenanceDays] = useState(0);
+
+  useEffect(() => {
+    const calculateMaintenanceDays = () => {
+      const today = new Date();
+      const currentDay = today.getDate();
+      const currentMonth = today.getMonth();
+      const currentYear = today.getFullYear();
+      const nextMaintenanceDate = new Date(currentYear, currentMonth, 16);
+
+      if (currentDay > 16) {
+        nextMaintenanceDate.setMonth(currentMonth + 1);
+        if (nextMaintenanceDate.getMonth() === 0) {
+          nextMaintenanceDate.setFullYear(currentYear + 1);
+        }
+      }
+
+      const timeDifference = +nextMaintenanceDate - +today;
+      const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+      setMaintenanceDays(daysRemaining);
+    };
+
+    calculateMaintenanceDays();
+  }, []);
 
   return (
     <section className="h-screen flex text-[#c1c1c1] bg-[#0a0a0a]">
@@ -282,7 +309,7 @@ const HomeDashboardPage = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="text-4xl font-bold text-sky-500">
-            25 Dias
+            {maintenanceDays} Dias
           </CardContent>
         </Card>
       </div>
